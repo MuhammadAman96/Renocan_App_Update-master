@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Admin_Signup
+    public class Admin_Signup : Message
     {
         public int Admin_ID { get; set; }
         public string Admin_Name { get; set; }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Service_Category
+    public class Service_Category : Message
     {
         public int Category_ID { get; set; }
         public string CategoryName { get; set; }

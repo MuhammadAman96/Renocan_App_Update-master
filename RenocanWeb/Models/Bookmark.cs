@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Bookmark
+    public class Bookmark : Message
     {
         public int Bookmark_ID { get; set; }
         public Nullable<int> User_ID { get; set; }

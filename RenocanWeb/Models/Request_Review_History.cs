@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Request_Review_History
+    public class Request_Review_History : Message
     {
         public int Request_Review_History_ID { get; set; }
         public Nullable<int> Review_ID { get; set; }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Image_Gallary
+    public class Image_Gallary : Message
     {
         public int Image_ID { get; set; }
         public string Image_Name { get; set; }

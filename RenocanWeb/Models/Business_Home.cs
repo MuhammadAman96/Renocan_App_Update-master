@@ -6,7 +6,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Business_Home
+    public class Business_Home : Message
     {
         public int? Activity_ID { get; set; }
 

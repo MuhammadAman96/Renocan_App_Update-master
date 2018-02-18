@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Service_Request
+    public class Service_Request : Message
     {
         public int Service_Request_ID { get; set; }
         public Nullable<int> User_ID { get; set; }

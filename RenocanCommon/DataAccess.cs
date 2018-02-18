@@ -56,6 +56,11 @@ namespace RenocanCommon
             }
         }
 
+        public static bool ExecuteNonQuery(object connectionString, string v, SqlParameter[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
         public static DataTable CreateTableFromSchema(DataTable schemaTable)
         {
             DataTable dt = new DataTable();

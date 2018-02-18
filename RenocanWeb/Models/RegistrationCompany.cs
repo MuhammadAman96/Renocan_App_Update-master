@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace RenocanWeb.Models
 {
    
-    public class RegistrationCompany
+    public class RegistrationCompany : Message
     {
         public int? Company_ID { get; set; }
 

@@ -9,17 +9,41 @@
 <body>
     <div id="signing">
         <div class="content">
-            <form action="">
+            <form method="post">
+                @Html.AntiForgeryToken()
                 <fieldset>
-                    <label for="">Full Name</label>
-                    @Html.TextBoxFor(m => m.Full_Name, new { placeholder = "", @maxlength = "50" })
-                    @Html.ValidationMessageFor(m => m.Full_Name, "", new { @class = "text-red" })
+                    <label for="">First Name</label>
+                    @Html.TextBoxFor(m => m.First_Name, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.First_Name, "", new { @class = "text-red" })
                 </fieldset>
+
+                <fieldset>
+                    <label for="">Last Name</label>
+                    @Html.TextBoxFor(m => m.Last_Name, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Last_Name, "", new { @class = "text-red" })
+                </fieldset>
+                <fieldset>
+                    <label for="">City</label>
+                    @Html.TextBoxFor(m => m.City, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-red" })
+                </fieldset>
+                <fieldset>
+                    <label for="">State</label>
+                    @Html.TextBoxFor(m => m.State, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-red" })
+                </fieldset>
+                <fieldset>
+                    <label for="">Phone</label>
+                    @Html.TextBoxFor(m => m.Phone, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-red" })
+                </fieldset>
+
                 <fieldset>
                     <label for="">Email Address</label>
                     @Html.TextBoxFor(m => m.Email, new { type = "email", placeholder = "", @maxlength = "50" })
                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red" })
                 </fieldset>
+
                 <fieldset>
                     <label for="">Password</label>
                     @Html.TextBoxFor(m => m.Create_Password, new { placeholder = "", @maxlength = "50" })
@@ -30,9 +54,23 @@
                     @Html.TextBoxFor(m => m.Confirm_Password, new { placeholder = "", @maxlength = "50" })
                     @Html.ValidationMessageFor(m => m.Confirm_Password, "", new { @class = "text-red" })
                 </fieldset>
-                <p>By Clicking Sign Up you agree to Renocan's <a href="">Terms &amp; Conditions</a></p>
-                <input type="submit" value="Sign Up">
 
+
+                <div class="newsletter">
+                    <input type="checkbox"> Sign up to RenoCan Newsletter.
+                </div>
+
+
+
+
+
+
+
+
+
+               
+                <p><br /> By Clicking Sign Up you agree to Renocan's <a href="">Terms &amp; Conditions</a></p>
+                <input type="submit" value="Sign Up">
                 <div class="social">
                     <span>Sign Up with Social Accounts</span>
                     <ul>
@@ -41,7 +79,6 @@
                         <li><a href="" class="googleplus"><i class="fa fa-google-plus-square"></i></a></li>
                     </ul>
                 </div>
-
                 <!--<div class="error"><span><i class="fa fa-times"></i> Password Do Not Match</span></div>-->
             </form>
         </div>

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Review
+    public class Review : Message
     {
         public int Review_ID { get; set; }
         public int? Service_Request_ID { get; set; }

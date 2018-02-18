@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Visitor_Log
+    public class Visitor_Log : Message
     {
 
         public int User_Log_ID { get; set; }

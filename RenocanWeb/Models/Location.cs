@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Location
+    public class Location : Message
     {
         public int Location_ID { get; set; }
         public string Location_Name { get; set; }

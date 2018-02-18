@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class Scoreboard
+    public class Scoreboard : Message
     {
         public int Scoreboard_ID { get; set; }
         public Nullable<int> Visitor_ID { get; set; }

@@ -168,6 +168,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\AppConfigurations.cs" />
     <Compile Include="Controllers\Business_HomeController.cs" />
     <Compile Include="Controllers\ClientAccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Models\Image_Type.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\RegistrationCompany.cs" />
     <Compile Include="Models\Request_Review_History.cs" />
     <Compile Include="Models\Review.cs" />
@@ -255,8 +257,10 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -328,6 +332,7 @@
     <Content Include="Views\Business_Home\Business_new_password_.cshtml" />
     <Content Include="Views\ClientAccount\Client_new_password_.cshtml" />
     <Content Include="Views\ClientAccount\Client_Information.cshtml" />
+    <Content Include="Views\Home\Company_search_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,7 +344,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RenocanCommon\RenocanCommon.csproj">

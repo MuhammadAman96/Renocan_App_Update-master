@@ -17,6 +17,13 @@ namespace RenocanWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult Company_search_list()
+        {
+            return View();
+        }
+
+
         public ActionResult BusinessSignUp()
         {
             var RegistrationCompany = new RegistrationCompany();

@@ -11,6 +11,9 @@ namespace RenocanWeb
             bundles.Add(new ScriptBundle("~/Assets/Scripts").Include(
               "~/Assets/js/lightbox.min.js"
                , "~/Assets/js/rating.js"
+               ,"~/Scripts/jquery.validate.min.js"
+               ,"~/Scripts/jquery.validate.unobtrusive.min.js"
+               ,"~/Scripts/bootstrap.min.js"
                //, "~/Assets/plugins/fastclick/fastclick.js"
                //, "~/Assets/js/app.min.js"
                //, "~/Assets/plugins/select2/select2.full.min.js"
@@ -24,6 +27,9 @@ namespace RenocanWeb
                "~/Assets/css/lightbox.min.css",
                "~/Assets/css/style.css" 
                       ));
+
+
+
         }
     }
 }
