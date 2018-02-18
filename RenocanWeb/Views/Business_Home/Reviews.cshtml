@@ -1,0 +1,174 @@
+﻿@model RenocanWeb.Models.RegistrationCompany
+
+@*@{
+        ViewBag.Title = "Businessreviews";
+    }*@
+<body>
+
+    <div id="businessdb">
+        <div class="content">
+            <div class="left">
+                <div class="profile">
+                    <img src="~/Assets/images/company-logo-06.jpg" alt="">
+                    <div class="details">
+                        <span class="name">
+                            Unilever Pvt Ltd.
+                        </span>
+                        <span class="city">
+                            Toronto
+                        </span>
+                        <span class="upload">
+                            <button type="file" name="image"><i class="fa fa-camera"></i> Upload Logo</button>
+                            <span>.jpg .png allowed only max: 2mb</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <ul>
+                        <li><a href=""><i class="fa fa-clock-o"></i> @Html.ActionLink("Activity", "Activity", "Business_Home")</a></li>
+                        <li><i class="fa fa-list-ul"></i>@Html.ActionLink("Company Listing", "Listing", "Business_Home")</li>
+                        <li><a href=""><i class="fa fa-money"></i> Payment Setting</a></li>
+                        <li><i class="fa fa-photo"></i>@Html.ActionLink("Galleries", "Media", "Business_Home")</li>
+                        <li class="active"><a href=""><i class="fa fa-comments"></i> Reviews</a></li>
+                        <li><i class="fa fa-bar-chart"></i>@Html.ActionLink("Scoreboard", "Scoreboard", "Business_Home")</li>
+                        <li><i class="fa fa-briefcase"></i> @Html.ActionLink("toolkit", "toolkit", "Business_Home")</li>
+                        <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
+                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right">
+                <span class="heading"><i class="fa fa-comments"></i> Reviews</span>
+
+                <div class="reviews">
+                    <div class="box">
+                        <div class="img">
+                            <img src="~/Assets/images/user-profile-img.jpg" alt="">
+                        </div>
+                        <div class="detail">
+                            <div class="name">Juanita Houston</div>
+                            <div class="review">
+                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                            </div>
+                        </div>
+                        <div class="desc">
+                            <span>Basement Renovation review in Vaughan</span>
+                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                        </div>
+
+                        <div class="response">
+                            <span><i class="fa fa-reply"></i> Company's Response</span>
+                            <textarea placeholder="Write your response here">Thank you so much, Wishing you and your family all the best in 2017, Ben &amp; Dan</textarea>
+                        </div>
+
+
+                    </div>
+                    <div class="box">
+                        <div class="img">
+                            <img src="images/user-profile-img.jpg" alt="">
+                        </div>
+                        <div class="detail">
+                            <div class="name">Juanita Houston</div>
+                            <div class="review">
+                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                            </div>
+                        </div>
+                        <div class="desc">
+                            <span>Basement Renovation review in Vaughan</span>
+                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                        </div>
+
+                        <div class="investigate">
+                            <span><i class="fa fa-warning"></i> Request an Investigation</span>
+                            <p>Assure polite his really and others figure though. Day age advantages end sufficient eat expression travelling.</p>
+                            <textarea placeholder="Write your request here">Thank you so much, Wishing you and your family all the best in 2017, Ben &amp; Dan</textarea>
+                        </div>
+
+
+                    </div>
+                    <div class="box">
+                        <div class="img">
+                            <img src="images/user-profile-img.jpg" alt="">
+                        </div>
+                        <div class="detail">
+                            <div class="name">Juanita Houston</div>
+                            <div class="review">
+                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                            </div>
+                        </div>
+                        <div class="desc">
+                            <span>Basement Renovation review in Vaughan</span>
+                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                        </div>
+
+                        <div class="btns">
+                            <ul>
+                                <li><a href=""><i class="fa fa-reply"></i> Reply to this</a></li>
+                                <li><a href=""><i class="fa fa-warning"></i> Investigate</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <div class="box">
+                        <div class="img">
+                            <img src="images/user-profile-img.jpg" alt="">
+                        </div>
+                        <div class="detail">
+                            <div class="name">Juanita Houston</div>
+                            <div class="review">
+                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                            </div>
+                        </div>
+                        <div class="desc">
+                            <span>Basement Renovation review in Vaughan</span>
+                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                        </div>
+
+                        <div class="btns">
+                            <ul>
+                                <li><a href=""><i class="fa fa-reply"></i> Reply to this</a></li>
+                                <li><a href=""><i class="fa fa-warning"></i> Investigate</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+                    <!--
+                      <div class="noreviews">
+                        <span>No Customer have written a review for your company</span>
+                        <input type="text" placeholder="Enter Customer's Email Address to Invite">
+                        <button>Invite a Customer</button>
+                        <p>Seprate Email Address by comma</p>
+                      </div>
+                    -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+

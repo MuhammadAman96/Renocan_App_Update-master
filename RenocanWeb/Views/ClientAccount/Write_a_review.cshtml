@@ -1,0 +1,91 @@
+﻿@model RenocanWeb.Models.Review
+@*@{
+        ViewBag.Title = "write a review";
+    }*@
+
+<body>
+
+
+    <div id="writeareview">
+        <div class="content">
+            <form action="" class="search">
+                <h1>Review Unilever Pvt Ltd.</h1>
+
+                <div class="rating">
+                    <div id="stars" class="starrr"></div>
+                    <p>You gave a rating of <span id="count">0</span> star(s)</p>
+                </div>
+
+                <fieldset>
+                    <label for="">Review Title</label>
+                    @Html.TextBoxFor(m => m.Review_Title, new { placeholder = "Project, product, or service, e.g. Kitchen Renovation", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Review_Title, "", new { @class = "text-red" })
+
+                </fieldset>
+
+                <fieldset>
+                    <span>
+                        Work Site Location: <b>Brampton</b> <a href="">
+                            @Html.ActionLink("Change", "Client_city", "ClientAccount")
+                    </a>
+                </span>
+            </fieldset>
+
+                <fieldset>
+                    <label for="">Approximate Cost</label>
+                    @Html.TextBoxFor(m => m.Approximate_Cost, new { placeholder = "$", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Approximate_Cost, "", new { @class = "text-red" })
+                </fieldset>
+
+                <fieldset>
+                    <label for="">Review Details</label>
+                    @Html.TextAreaFor(m => m.Review_Details, new { @class = "form-control",@maxlength = "500", @cols = "30",@rows = "10" })
+                    <p>Review story must be at least 30 words. <b>Word Count: 500</b></p>
+                </fieldset>
+
+            <fieldset>
+                <div class="user">
+                    <div class="img">
+                        <img src="~/Assets/images/user-profile-img.jpg" alt="">
+                    </div>
+                    <div class="text">
+                        <span>Samuel Jackson from <b>Brampton</b></span>
+                        @Html.CheckBoxFor(m => m.IsAnonymous )
+                         Post Review anonymously.
+                    </div>
+                </div>
+            </fieldset>
+
+            <input type="submit" value="Submit Review">
+        </form>
+
+        <div class="box">
+            <span>Review Requirements</span>
+            <ul>
+                <li>Email address and postal/zip code are required for verification.</li>
+                <li>Your review must be legal and non-infringing.</li>
+                <li>Reviews must be written in English and contain only family-friendly content.</li>
+                <li>No commercial content (URLs, email addresses, code, etc).</li>
+                <li>Employees and family members of employees cannot review their own company.</li>
+                <li>Reviews cannot contain the full names of employees.</li>
+                <li>Reviews cannot be written by or about minors (under the age of 18).</li>
+                <li>Reviews must be based on a financial transaction between a homeowner and company.</li>
+                <li>Review content is permitted to the work or service performed by the company.</li>
+                <li>Reviews cannot be written in response to other reviews.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+<hr>
+
+
+
+
+
+
+
+</body>
+

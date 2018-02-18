@@ -1,0 +1,57 @@
+﻿@model RenocanWeb.Models.RegistrationCompany
+
+@*@{
+        ViewBag.Title = "Client Bookmark";
+    }*@
+
+<body>
+
+    <div id="dashboard">
+        <div class="content">
+            <div class="left">
+                <div class="profile">
+                    <img src="~/Assets/images/user-profile-img.jpg" alt="">
+                    
+                    <div class="details">
+                        <span class="name">
+                            Catherine Dobre
+                        </span>
+                        <span class="city">
+                            Toronto
+                        </span>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i>@Html.ActionLink("Activity", "Client_activity", "ClientAccount")</li>
+
+                        <li><i class="fa fa-comments"></i>@Html.ActionLink("My Review", "Client_review", "ClientAccount")</li>
+                        <li><i class="fa fa-user"></i>@Html.ActionLink("Account Information", "Client_Information", "ClientAccount")</li>
+                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right">
+                <span class="heading"><i class="fa fa-bookmark"></i> Bookmarked Companies</span>
+
+                <div class="bookmarks">
+                    <div class="box">
+                        <span><a href="">The Home Improvement People</a></span>
+                        <p>Basement Renovation, Bathroom Renovation, Builders, Cabinetry &amp; Millwork, General Contractors, Home Additions, Home Office Renovation, Kitchen &amp; Bathroom - Cabinets &amp; Design, Kitchen Planning &amp; Renovation, Design/Project Management, Design/Build, and Condominium Renovations Remove</p>
+                        <div class="rating"><i class="fa fa-star"></i> 9</div>
+                    </div>
+                    <div class="box">
+                        <span><a href="">The Home Improvement People</a></span>
+                        <p>Basement Renovation, Bathroom Renovation, Builders, Cabinetry &amp; Millwork, General Contractors, Home Additions, Home Office Renovation, Kitchen &amp; Bathroom - Cabinets &amp; Design, Kitchen Planning &amp; Renovation, Design/Project Management, Design/Build, and Condominium Renovations Remove</p>
+                        <div class="rating"><i class="fa fa-star"></i> 9</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

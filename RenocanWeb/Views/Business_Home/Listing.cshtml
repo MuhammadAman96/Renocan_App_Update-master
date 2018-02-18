@@ -1,0 +1,162 @@
+﻿@model RenocanWeb.Models.RegistrationCompany
+@*@{
+        ViewBag.Title = "BusinessListing";
+    }*@
+<body>
+    <div id="businessdb">
+        <div class="content">
+            <div class="left">
+                <div class="profile">
+                    <img src="~/Assets/images/company-logo-06.jpg" alt="">
+                    <div class="details">
+                        <span class="name">
+                            Unilever Pvt Ltd.
+                        </span>
+                        <span class="city">
+                            Toronto
+                        </span>
+                        <span class="upload">
+                            <button type="file" name="image"><i class="fa fa-camera"></i> Upload Logo</button>
+                            <!--<button type="file" name="image" class="remove"><i class="fa fa-times-circle"></i> Remove Logo</button>-->
+                            <span>.jpg .png allowed only max: 2mb</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href=""><i class="fa fa-clock-o"></i> @Html.ActionLink("Activity", "Activity", "Business_Home")</a></li>
+                        <li class="active"><a href=""><i class="fa fa-list-ul"></i> Company Listing</a></li>
+                        <li><a href=""><i class="fa fa-money"></i> Payment Setting</a></li>
+
+                        <li><i class="fa fa-photo"></i>@Html.ActionLink("Galleries", "Media", "Business_Home")</li>
+
+                        <li><i class="fa fa-comments"></i>@Html.ActionLink("Reviews", "Reviews", "Business_Home")</li>
+
+                        <li><i class="fa fa-bar-chart"></i>@Html.ActionLink("Scoreboard", "Scoreboard", "Business_Home")</li>
+
+                        <li><i class="fa fa-briefcase"></i> @Html.ActionLink("toolkit", "toolkit", "Business_Home")</li>
+
+                      
+                        <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
+                       
+                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right">
+                <span class="heading"><i class="fa fa-list-ul"></i> Company Listing</span>
+                <div class="listing">
+                    <div class="cat">
+                        <span>Categories</span>
+                        <p>Your Company searches will be found in this Categories</p>
+                        <ul>
+                            <li>Heating &amp; Air Conditioning <a href="">Edit <i class="fa fa-pencil"></i></a></li>
+                            <li>Heating &amp; Air Conditioning <a href="">Edit <i class="fa fa-pencil"></i></a></li>
+                            <li>Heating &amp; Air Conditioning <a href="">Edit <i class="fa fa-pencil"></i></a></li>
+                            <li>Heating &amp; Air Conditioning <a href="">Edit <i class="fa fa-pencil"></i></a></li>
+                            <li><a href="">Add More Categories</a></li>
+                        </ul>
+                    </div>
+                    <div class="service">
+                        <span>Service Areas</span>
+                        <p>Your Company searches will be found in this areas.</p>
+                        <div class="box">
+                            <span>Richmond Hill <a href="">Edit <i class="fa fa-pencil"></i></a></span>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91990.29521126252!2d-79.49834120045207!3d43.90354756109732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a4936291733%3A0x5201760ad6b142ed!2sRichmond+Hill%2C+ON%2C+Canada!5e0!3m2!1sen!2s!4v1484997041857" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="box">
+                            <span>Richmond Hill <a href="">Edit <i class="fa fa-pencil"></i></a></span>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91990.29521126252!2d-79.49834120045207!3d43.90354756109732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a4936291733%3A0x5201760ad6b142ed!2sRichmond+Hill%2C+ON%2C+Canada!5e0!3m2!1sen!2s!4v1484997041857" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="box">
+                            <span>Richmond Hill <a href="">Edit <i class="fa fa-pencil"></i></a></span>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91990.29521126252!2d-79.49834120045207!3d43.90354756109732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a4936291733%3A0x5201760ad6b142ed!2sRichmond+Hill%2C+ON%2C+Canada!5e0!3m2!1sen!2s!4v1484997041857" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="box">
+                            <span>Richmond Hill <a href="">Edit <i class="fa fa-pencil"></i></a></span>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91990.29521126252!2d-79.49834120045207!3d43.90354756109732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a4936291733%3A0x5201760ad6b142ed!2sRichmond+Hill%2C+ON%2C+Canada!5e0!3m2!1sen!2s!4v1484997041857" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="meta">
+                        <span>Listing Details</span>
+                        <form action="">
+                            <fieldset>
+                                <label for="">Phone</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset>
+                                <label for="">Basic Profile Information</label>
+                                <textarea name="" id="" cols="30" rows="5"></textarea>
+                            </fieldset>
+                            <fieldset>
+                                <label for="">Website</label>
+                                <input type="text">
+                            </fieldset>
+                            <hr>
+                            <fieldset class="half">
+                                <label for="">Products</label>
+                                <textarea name="" id="" cols="30" rows="2"></textarea>
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Services</label>
+                                <textarea name="" id="" cols="30" rows="2"></textarea>
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Brands</label>
+                                <textarea name="" id="" cols="30" rows="2"></textarea>
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Specialities</label>
+                                <textarea name="" id="" cols="30" rows="2"></textarea>
+                            </fieldset>
+                            <hr>
+                            <fieldset class="half">
+                                <label for="">Year Established</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Return Policy (URL)</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Payment Method (URL)</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Licences (URL)</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Insurance (URL)</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Certificates (URL)</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Pricing</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Contract Based</label>
+                                <input type="text">
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Warranty</label>
+                                <input type="text">
+                            </fieldset>
+                            <div class="btn">
+                                <input type="submit" value="Save Changes">
+                                <input type="reset" value="Cancel">
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,76 @@
+﻿@model RenocanWeb.Models.RegistrationCompany
+
+@*@{
+        ViewBag.Title = "Businessscoreboard";
+    }*@
+
+<body>
+    <div id="businessdb">
+        <div class="content">
+            <div class="left">
+                <div class="profile">
+                    <img src="~/Assets/images/company-logo-06.jpg" alt="">
+                  
+                    <div class="details">
+                        <span class="name">
+                            Unilever Pvt Ltd.
+                        </span>
+                        <span class="city">
+                            Toronto
+                        </span>
+                        <span class="upload">
+                            <button type="file" name="image"><i class="fa fa-camera"></i> Upload Logo</button>
+                            <!--<button type="file" name="image" class="remove"><i class="fa fa-times-circle"></i> Remove Logo</button>-->
+                            <span>.jpg .png allowed only max: 2mb</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <ul>
+                        <li><a href=""><i class="fa fa-clock-o"></i> @Html.ActionLink("Activity", "Activity", "Business_Home")</a></li>
+                        
+                        <li><i class="fa fa-list-ul"></i>@Html.ActionLink("Company Listing", "Listing", "Business_Home")</li>
+                        <li><a href=""><i class="fa fa-money"></i> Payment Setting</a></li>
+                        <li><i class="fa fa-photo"></i>@Html.ActionLink("Galleries", "Media", "Business_Home")</li>
+                        <li><i class="fa fa-comments"></i>@Html.ActionLink("Reviews", "Reviews", "Business_Home")</li>
+                        <li class="active"><a href=""><i class="fa fa-bar-chart"></i> Scoreboard</a></li>
+                        <li><i class="fa fa-briefcase"></i> @Html.ActionLink("toolkit", "toolkit", "Business_Home")</li>
+                        <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
+                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right">
+                <span class="heading"><i class="fa fa-bar-chart"></i> Scoreboard</span>
+                <div class="score">
+                    <div class="star">
+                        <span class="head">Overall Score</span>
+                        <span class="rating"><strong><i class="fa fa-star"></i> 9</strong>/10</span>
+                    </div>
+                    <div class="bars">
+                        <span class="head">Scores</span>
+                        <p>Average Ratings</p>
+                        <div class="meter">
+                            <span style="width:25%;"></span>
+                        </div>
+                        <p>Recency</p>
+                        <div class="meter">
+                            <span style="width:45%;"></span>
+                        </div>
+                        <p>Reputation</p>
+                        <div class="meter">
+                            <span style="width:55%;"></span>
+                        </div>
+                        <p>Response</p>
+                        <div class="meter">
+                            <span style="width:35%;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

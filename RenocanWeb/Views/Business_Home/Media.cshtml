@@ -1,0 +1,92 @@
+﻿@model RenocanWeb.Models.RegistrationCompany
+@*@{
+        ViewBag.Title = "BusinessMedia";
+    }*@
+<body>
+    <div id="businessdb">
+        <div class="content">
+            <div class="left">
+                <div class="profile">
+                    <img src="~/Assets/images/company-logo-06.jpg" alt="">
+                    <div class="details">
+                        <span class="name">
+                            Unilever Pvt Ltd.
+                        </span>
+                        <span class="city">
+                            Toronto
+                        </span>
+                        <span class="upload">
+                            <button type="file" name="image"><i class="fa fa-camera"></i> Upload Logo</button>
+                            <!--<button type="file" name="image" class="remove"><i class="fa fa-times-circle"></i> Remove Logo</button>-->
+                            <span>.jpg .png allowed only max: 2mb</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href=""><i class="fa fa-clock-o"></i> @Html.ActionLink("Activity", "Activity", "Business_Home")</a></li>
+                        <li><i class="fa fa-list-ul"></i>@Html.ActionLink("Company Listing", "Listing", "Business_Home")</li>
+                        <li><a href=""><i class="fa fa-money"></i> Payment Setting</a></li>
+                        <li><a href=""><i class="fa fa-photo"></i> Media &amp; Galleries</a></li>
+                        <li><i class="fa fa-comments"></i>@Html.ActionLink("Reviews", "Reviews", "Business_Home")</li>
+                        <li><i class="fa fa-bar-chart"></i>@Html.ActionLink("Scoreboard", "Scoreboard", "Business_Home")</li>
+                        <li><i class="fa fa-briefcase"></i> @Html.ActionLink("toolkit", "toolkit", "Business_Home")</li>
+                        <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
+                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="right">
+                <span class="heading"><i class="fa fa-photo"></i> Media &amp; Galleries</span>
+                <div class="gallery">
+                    <div class="media">
+                        <span>Photo &amp; Video Gallery</span>
+                        <section>
+                            <div>
+                                <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-3.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                                    <img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" alt="" />
+                                    <span class="selection"><i class="fa fa-times"></i></span>
+                                </a>
+                                <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-4.jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard.">
+                                    <img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-4.jpg" alt="" />
+                                </a>
+                                <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-5.jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing.">
+                                    <img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-5.jpg" alt="" />
+                                </a>
+                                <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-6.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close.">
+                                    <img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg" alt="" />
+                                </a>
+                                <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-6.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close.">
+                                    <img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg" alt="" />
+                                </a>
+                                <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-6.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close.">
+                                    <iframe width="138" height="138" src="https://www.youtube.com/embed/n4qojmUriS0" frameborder="0" allowfullscreen></iframe>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="btn">
+                        <a href="" class="green" id="upload">Upload Media</a>
+                        <a href="" class="white">Delete Media</a>
+                    </div>
+                    <div class="popup">
+                        <form action="">
+                            <label for="">Upload Photos</label>
+                            <input type="file">
+                            <hr>
+                            <label for="">Video Link: <i class="fa fa-youtube-play"></i> <i class="fa fa-vimeo-square"></i></label>
+                            <input type="text" placeholder="Paste you link here">
+                            <button type="submit"><i class="fa fa-upload"></i></button>
+                        </form>
+                    </div>
+                    <p><b>Max Upload Limit:</b> 10 Images &amp; 1 Video</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    </script>
+
+</body>

@@ -1,0 +1,49 @@
+﻿
+
+@model RenocanWeb.Models.Client_Signup
+
+@*@{
+        ViewBag.Title = "Client_Signup";
+    }*@
+
+<body>
+    <div id="signing">
+        <div class="content">
+            <form action="">
+                <fieldset>
+                    <label for="">Full Name</label>
+                    @Html.TextBoxFor(m => m.Full_Name, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Full_Name, "", new { @class = "text-red" })
+                </fieldset>
+                <fieldset>
+                    <label for="">Email Address</label>
+                    @Html.TextBoxFor(m => m.Email, new { type = "email", placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red" })
+                </fieldset>
+                <fieldset>
+                    <label for="">Password</label>
+                    @Html.TextBoxFor(m => m.Create_Password, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Create_Password, "", new { @class = "text-red" })
+                </fieldset>
+                <fieldset>
+                    <label for="">Confirm Password</label>
+                    @Html.TextBoxFor(m => m.Confirm_Password, new { placeholder = "", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Confirm_Password, "", new { @class = "text-red" })
+                </fieldset>
+                <p>By Clicking Sign Up you agree to Renocan's <a href="">Terms &amp; Conditions</a></p>
+                <input type="submit" value="Sign Up">
+
+                <div class="social">
+                    <span>Sign Up with Social Accounts</span>
+                    <ul>
+                        <li><a href="" class="facebook"><i class="fa fa-facebook-official"></i></a></li>
+                        <li><a href="" class="twitter"><i class="fa fa-twitter-square"></i></a></li>
+                        <li><a href="" class="googleplus"><i class="fa fa-google-plus-square"></i></a></li>
+                    </ul>
+                </div>
+
+                <!--<div class="error"><span><i class="fa fa-times"></i> Password Do Not Match</span></div>-->
+            </form>
+        </div>
+    </div>
+</body>

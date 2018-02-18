@@ -1,0 +1,95 @@
+﻿\@model RenocanWeb.Models.RegistrationCompany
+@*@{
+        ViewBag.Title = "BusinessSignUp";
+    }*@
+<div id="businesssignup">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <span class="heading">Register Your Company</span>
+                <p>As Canada's most trusted home improvement site, our community has 2 million companies already listed. Last year, 5 million homeowners read reviews and sent hundreds of thousands of requests through RenoCan to find their next home improvement professional.</p>
+                <div class="box">
+                    <div class="img">
+                        <img src="~/Assets/images/benefits_profile.png" alt="">
+                    </div>
+                    <div class="text">
+                        <span class="title">Control your company profile</span>
+                        <p>Claim your profile to add your logo, name, contact information and more to start receiving requests from homeowners in your area.</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="img">
+                        <img src="~/Assets/images/benefits_engaged.png" alt="">
+                    </div>
+                    <div class="text">
+                        <span class="title">Get Reviews</span>
+                        <p>Get client reviews in person, through your listing or through your phone. It’s even easier with the RenoCan for Business App.</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="img">
+                        <img src="~/Assets/images/benefits_user_count.png" alt="">
+                    </div>
+                    <div class="text">
+                        <span class="title">Connect with Homeowners</span>
+                        <p>Whether it’s your email, address, phone number, website, or social media, make sure you can connect with up to 5 million homeowners.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <span class="heading">Join RenoCan</span>
+                <p>Get started – it's free and only takes seconds.</p>
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    <fieldset>
+                        @Html.TextBoxFor(m => m.CompanyName, new { placeholder = "Business Name", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "text-red" })
+                    </fieldset>
+                    <fieldset>
+                        @Html.DropDownListFor(m => m.BusinessCategoryId, Model.BusinessCategoryList, "Select Business Category", new { @id = "ddlcategory" })
+                        @Html.ValidationMessageFor(m => m.BusinessCategoryId, "", new { @class = "text-red" })
+                    </fieldset>
+                    <fieldset>
+
+                        @Html.TextBoxFor(m => m.Owner_First_Name, new { placeholder = "Owner First Name", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Owner_First_Name, "", new { @class = "text-red" })
+                    </fieldset>
+                    <fieldset>
+
+                        @Html.TextBoxFor(m => m.Owner_Last_Name, new { placeholder = "Owner Last Name", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Owner_Last_Name, "", new { @class = "text-red" })
+                    </fieldset>
+                    <fieldset class="small">
+                        @Html.TextBoxFor(m => m.Email, new { type = "email", placeholder = "Email", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red" })
+                    </fieldset>
+
+                    <fieldset class="small">
+                        
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Phone", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-red" })
+                        
+                    </fieldset>
+
+                    <fieldset>
+                        @Html.TextBoxFor(m => m.PostalCode, new { placeholder = "Postal Code or City", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.PostalCode, "", new { @class = "text-red" })
+
+                    </fieldset>
+                    <fieldset class="small">
+                        @Html.TextBoxFor(m =>m.Create_Password, new { placeholder = "Create Password", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Create_Password, "", new { @class = "text-red" })
+
+                    </fieldset>
+                    <fieldset class="small">
+                        @Html.TextBoxFor(m =>m.Confirm_Password, new { placeholder = "Confirm Password", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Confirm_Password, "", new { @class = "text-red" })
+                    </fieldset>
+                    <p>By Signing Up you accept <a href="">Terms &amp; Conditions</a> &amp; <a href="">Privacy Policy</a>.</p>
+                    <input type="submit" value="Create Business Account">
+                    <button><a href="">Already Registered? Login</a></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
