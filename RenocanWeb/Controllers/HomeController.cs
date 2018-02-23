@@ -8,6 +8,8 @@ using RenocanCommon;
 
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using RenocanWeb.Common;
 
 namespace RenocanWeb.Controllers
 {
@@ -53,6 +55,53 @@ namespace RenocanWeb.Controllers
                 return null;
             }
         }
+
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]      
+        public ActionResult BusinessSignUp(RegistrationCompany registrationCompany)
+        {
+            if (ModelState.IsValid)
+            {
+                      SqlParameter[] parameters =
+
+                   {new SqlParameter("@Company_Name", SqlDbType.NVarChar) { Value = registrationCompany.CompanyName},
+                    new SqlParameter("@Owner_First_Name", SqlDbType.NVarChar) { Value = registrationCompany.Owner_First_Name},
+                      new SqlParameter("@Owner_Last_Name",SqlDbType.NVarChar){Value=registrationCompany.Owner_Last_Name},
+                      new SqlParameter("@Category_ID",SqlDbType.NVarChar){Value=registrationCompany.BusinessCategoryId},
+                    new SqlParameter("@PostalCode",SqlDbType.NVarChar){Value=registrationCompany.PostalCode},
+                      new SqlParameter("@Email", SqlDbType.NVarChar) { Value = registrationCompany.Email },
+                       new SqlParameter("@Create_Password",SqlDbType.NVarChar){Value=registrationCompany.Create_Password},
+                       new SqlParameter("@PhoneNumber",SqlDbType.NVarChar){Value=registrationCompany.PhoneNumber},
+                      new SqlParameter("@UserIP",SqlDbType.NVarChar){Value= Constants.GetUserIP()
+
+                      }
+               };
+
+                if (DataAccess.ExecuteNonQuery(AppConfigurations.ConnectionString, "Insert_Update_Company_Registration", parameters))
+                    return RedirectToAction("BusinessSignUp");
+                else
+                {
+                    registrationCompany.IsError = true;
+                    registrationCompany.ErrorMessage = Constants.ErrorMesssage;
+                }
+
+            }
+            return View(registrationCompany);
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

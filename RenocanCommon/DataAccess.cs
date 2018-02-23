@@ -123,7 +123,7 @@ namespace RenocanCommon
                     else
                         return false;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     return false;
                 }

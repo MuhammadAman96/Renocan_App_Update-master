@@ -36,15 +36,25 @@ namespace RenocanWeb.Models
 
 
         [Required(ErrorMessage = "Please Enter Password")]
+        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
+        [DataType(DataType.Password)]
         public string Create_Password { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Password")]
+   
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        [System.ComponentModel.DataAnnotations.Compare("Create_Password")]
         public string Confirm_Password { get; set; }
 
+
         [Required(ErrorMessage = "Please Enter Owner_First_Name")]
+        [RegularExpression(@"^([a-zA-Z\s'-]{3,50})$", ErrorMessage = "Please Enter Valid Name")]
         public string Owner_First_Name { get; set; }
 
         [Required(ErrorMessage = "Please Enter Owner_Last_Name")]
+        [RegularExpression(@"^([a-zA-Z\s'-]{3,50})$", ErrorMessage = "Please Enter Valid Name")]
         public string Owner_Last_Name { get; set; }
 
         public Nullable<bool> IsAggrement { get; set; }
@@ -53,67 +63,67 @@ namespace RenocanWeb.Models
         public Nullable<bool> Is_Paid { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Website_Add")]
+        //[Required(ErrorMessage = "Please Enter Website_Add")]
         public string Website_Add { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Bussiness_Description")]
+        //[Required(ErrorMessage = "Please Enter Bussiness_Description")]
         public string Bussiness_Description { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Profile_Information")]
+       // [Required(ErrorMessage = "Please Enter Profile_Information")]
         public string Profile_Information { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Products")]
+        //[Required(ErrorMessage = "Please Enter Products")]
         public string Products { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Services")]
+        //[Required(ErrorMessage = "Please Enter Services")]
         public string Services { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Brands")]
+        //[Required(ErrorMessage = "Please Enter Brands")]
         public string Brands { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Specialities")]
+        //[Required(ErrorMessage = "Please Enter Specialities")]
         public string Specialities { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Year_Established")]
+        //[Required(ErrorMessage = "Please Enter Year_Established")]
         public string Year_Established { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Return_Policy_URL")]
+        //[Required(ErrorMessage = "Please Enter Return_Policy_URL")]
         public string Return_Policy_URL { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Payment_Method_URL")]
+        //[Required(ErrorMessage = "Please Enter Payment_Method_URL")]
         public string Payment_Method_URL { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Licences_URL")]
+        //[Required(ErrorMessage = "Please Enter Licences_URL")]
         public string Licences_URL { get; set; }
 
 
 
-        [Required(ErrorMessage = "Please Enter Insurance_URL")]
+        //[Required(ErrorMessage = "Please Enter Insurance_URL")]
         public string Insurance_URL { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Insurance_URL")]
+        //[Required(ErrorMessage = "Please Enter Insurance_URL")]
         public string Certificates_URL { get; set; }
 
 
 
-        [Required(ErrorMessage = "Please Enter Pricing")]
+        //[Required(ErrorMessage = "Please Enter Pricing")]
         public string Pricing { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Contract_Based")]
+        //[Required(ErrorMessage = "Please Enter Contract_Based")]
         public string Contract_Based { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Warranty")]
+        //[Required(ErrorMessage = "Please Enter Warranty")]
         public string Warranty { get; set; }
 
 

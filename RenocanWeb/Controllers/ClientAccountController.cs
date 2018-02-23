@@ -38,12 +38,9 @@ namespace RenocanWeb.Controllers
                       new SqlParameter("@City", SqlDbType.NVarChar) { Value = client_Sign_up.City },
                        new SqlParameter("@State",SqlDbType.NVarChar){Value=client_Sign_up.State},
                       new SqlParameter("@Email", SqlDbType.NVarChar) { Value = client_Sign_up.Email },
-
-                       new SqlParameter("@Create_Password",SqlDbType.NVarChar){Value=client_Sign_up.Create_Password},
-                      new SqlParameter("@Confirm_Password", SqlDbType.NVarChar) { Value = client_Sign_up.Confirm_Password },
+                       new SqlParameter("@Create_Password",SqlDbType.NVarChar){Value=client_Sign_up.Create_Password},                      
                        new SqlParameter("@Phone",SqlDbType.NVarChar){Value=client_Sign_up.Phone},
-                      new SqlParameter("@IsNewsletter", SqlDbType.NVarChar) { Value = client_Sign_up.IsNewsletter },
-                     
+                      new SqlParameter("@IsNewsletter", SqlDbType.NVarChar) { Value = client_Sign_up.IsNewsletter },                     
                       new SqlParameter("@UserIP",SqlDbType.NVarChar){Value= Constants.GetUserIP() }
                };
 
