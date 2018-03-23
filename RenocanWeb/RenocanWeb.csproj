@@ -168,7 +168,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\CompanyBaseController.cs" />
     <Compile Include="Common\AppConfigurations.cs" />
+    <Compile Include="Common\BaseController.cs" />
     <Compile Include="Controllers\Business_HomeController.cs" />
     <Compile Include="Controllers\ClientAccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,9 +187,11 @@
     <Compile Include="Models\Image_Gallary.cs" />
     <Compile Include="Models\Image_Type.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\RegistrationCompany.cs" />
+    <Compile Include="Models\RegistrationCompanyListing.cs" />
     <Compile Include="Models\Request_Review_History.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Scoreboard.cs" />
@@ -270,7 +274,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -336,6 +342,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AdminBase\" />
     <Folder Include="Views\User_Account\" />
   </ItemGroup>
   <ItemGroup>

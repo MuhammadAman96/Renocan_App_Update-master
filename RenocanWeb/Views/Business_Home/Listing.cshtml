@@ -1,7 +1,8 @@
-﻿@model RenocanWeb.Models.RegistrationCompany
+﻿@model RenocanWeb.Models.RegistrationCompanyListing
 @*@{
         ViewBag.Title = "BusinessListing";
     }*@
+
 <body>
     <div id="businessdb">
         <div class="content">
@@ -79,78 +80,128 @@
                     </div>
                     <div class="meta">
                         <span>Listing Details</span>
-                        <form action="">
-                            <fieldset>
-                                <label for="">Phone</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset>
-                                <label for="">Basic Profile Information</label>
-                                <textarea name="" id="" cols="30" rows="5"></textarea>
-                            </fieldset>
-                            <fieldset>
-                                <label for="">Website</label>
-                                <input type="text">
-                            </fieldset>
-                            <hr>
-                            <fieldset class="half">
-                                <label for="">Products</label>
-                                <textarea name="" id="" cols="30" rows="2"></textarea>
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Services</label>
-                                <textarea name="" id="" cols="30" rows="2"></textarea>
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Brands</label>
-                                <textarea name="" id="" cols="30" rows="2"></textarea>
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Specialities</label>
-                                <textarea name="" id="" cols="30" rows="2"></textarea>
-                            </fieldset>
-                            <hr>
-                            <fieldset class="half">
-                                <label for="">Year Established</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Return Policy (URL)</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Payment Method (URL)</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Licences (URL)</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Insurance (URL)</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Certificates (URL)</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Pricing</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Contract Based</label>
-                                <input type="text">
-                            </fieldset>
-                            <fieldset class="half">
-                                <label for="">Warranty</label>
-                                <input type="text">
-                            </fieldset>
-                            <div class="btn">
-                                <input type="submit" value="Save Changes">
-                                <input type="reset" value="Cancel">
-                            </div>
-                        </form>
+                        @using (Html.BeginForm())
+    {
+                    @Html.AntiForgeryToken()
+
+                    <fieldset>
+                        <label for="">Basic Profile Information</label>
+                        @Html.TextAreaFor(m => m.Profile_Information, new { cols = "30", rows = "5", placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Profile_Information, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <fieldset>
+                        <label for="">Website</label>
+                        @Html.TextBoxFor(m => m.Website_Add, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Website_Add, "", new { @class = "text-red" })
+
+                    </fieldset>
+                    <hr>
+                    <fieldset class="half">
+                        <label for="">Products</label>
+
+                        @Html.TextAreaFor(m => m.Products, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Products, "", new { @class = "text-red" })
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Services</label>
+                        @Html.TextAreaFor(m => m.Services, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Services, "", new { @class = "text-red" })
+
+                    </fieldset>
+                        
+
+                    <fieldset class="half">
+                        <label for="">Brands</label>
+                        @Html.TextAreaFor(m => m.Brands, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Brands, "", new { @class = "text-red" })
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Specialities</label>
+                        @Html.TextAreaFor(m => m.Specialities, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Specialities, "", new { @class = "text-red" })
+
+                    </fieldset>
+                    <hr>
+                    <fieldset class="half">
+                        <label for="">Year Established</label>
+                        @Html.TextAreaFor(m => m.Year_Established, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Year_Established, "", new { @class = "text-red" })
+
+                    </fieldset>
+                    <fieldset class="half">
+                        <label for="">Return Policy (URL)</label>
+                        @Html.TextAreaFor(m => m.Return_Policy_URL, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Return_Policy_URL, "", new { @class = "text-red" })
+
+                    </fieldset>
+                    <fieldset class="half">
+                        <label for="">Payment Method (URL)</label>
+                        @Html.TextAreaFor(m => m.Payment_Method_URL, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Payment_Method_URL, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Licences (URL)</label>
+                        @Html.TextAreaFor(m => m.Licences_URL, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Licences_URL, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Insurance (URL)</label>
+                        @Html.TextAreaFor(m => m.Insurance_URL, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Insurance_URL, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Certificates (URL)</label>
+                        @Html.TextAreaFor(m => m.Certificates_URL, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Certificates_URL, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Pricing</label>
+                        @Html.TextAreaFor(m => m.Pricing, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Pricing, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Contract Based</label>
+                        @Html.TextAreaFor(m => m.Contract_Based, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Contract_Based, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <fieldset class="half">
+                        <label for="">Warranty</label>
+                        @Html.TextAreaFor(m => m.Warranty, new { placeholder = "", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Warranty, "", new { @class = "text-red" })
+
+                    </fieldset>
+
+
+                    <div class="btn">
+                        <input type="submit" value="Save Changes">
+                        <input type="reset" value="Cancel">
+                    </div>
+}
 
                     </div>
 

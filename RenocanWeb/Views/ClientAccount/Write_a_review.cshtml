@@ -18,6 +18,7 @@
 
                 <fieldset>
                     <label for="">Review Title</label>
+                 
                     @Html.TextBoxFor(m => m.Review_Title, new { placeholder = "Project, product, or service, e.g. Kitchen Renovation", @maxlength = "50" })
                     @Html.ValidationMessageFor(m => m.Review_Title, "", new { @class = "text-red" })
 

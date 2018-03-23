@@ -14,12 +14,12 @@ namespace RenocanWeb.Models
 
 
         [AllowHtml]
-        [Required(ErrorMessage = "Please Enter Full Company Name")]
+        [Required]
         [RegularExpression(@"^([a-zA-Z\s'-]{3,50})$", ErrorMessage = "Please Enter Valid Name")]
          public string CompanyName { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter Postal Code")]
+        [Required]
         public string PostalCode { get; set; }
 
 
@@ -30,7 +30,7 @@ namespace RenocanWeb.Models
 
 
         [AllowHtml]
-        [Required(ErrorMessage = "Please Enter Email")]
+        [Required]
         [EmailAddress(ErrorMessage = "Please Enter a Valid Email Address")]
         public string Email { get; set; }
 
@@ -56,75 +56,6 @@ namespace RenocanWeb.Models
         [Required(ErrorMessage = "Please Enter Owner_Last_Name")]
         [RegularExpression(@"^([a-zA-Z\s'-]{3,50})$", ErrorMessage = "Please Enter Valid Name")]
         public string Owner_Last_Name { get; set; }
-
-        public Nullable<bool> IsAggrement { get; set; }
-
-
-        public Nullable<bool> Is_Paid { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Website_Add")]
-        public string Website_Add { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Bussiness_Description")]
-        public string Bussiness_Description { get; set; }
-
-
-       // [Required(ErrorMessage = "Please Enter Profile_Information")]
-        public string Profile_Information { get; set; }
-
-        //[Required(ErrorMessage = "Please Enter Products")]
-        public string Products { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Services")]
-        public string Services { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Brands")]
-        public string Brands { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Specialities")]
-        public string Specialities { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Year_Established")]
-        public string Year_Established { get; set; }
-
-        //[Required(ErrorMessage = "Please Enter Return_Policy_URL")]
-        public string Return_Policy_URL { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Payment_Method_URL")]
-        public string Payment_Method_URL { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Licences_URL")]
-        public string Licences_URL { get; set; }
-
-
-
-        //[Required(ErrorMessage = "Please Enter Insurance_URL")]
-        public string Insurance_URL { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Insurance_URL")]
-        public string Certificates_URL { get; set; }
-
-
-
-        //[Required(ErrorMessage = "Please Enter Pricing")]
-        public string Pricing { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Contract_Based")]
-        public string Contract_Based { get; set; }
-
-
-        //[Required(ErrorMessage = "Please Enter Warranty")]
-        public string Warranty { get; set; }
 
 
         public int BusinessCategoryId { get; set; }

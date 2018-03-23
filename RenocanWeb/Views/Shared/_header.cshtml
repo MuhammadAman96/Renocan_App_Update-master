@@ -9,11 +9,11 @@
 
                 <li>@Html.ActionLink("Write a Review", "Write_a_review", "ClientAccount")</li>
 
-               <li> @Html.ActionLink(" Browse category", "Browse_category", "Business_Home")</li>
-               <li> @Html.ActionLink(" Sign Up", "Client_Sign_up", "ClientAccount") </li>
-               <li> @Html.ActionLink(" Login", "Business_login", "Business_Home")</li>
-                <li><a href="" id="search"><img src="~/Assets/images/search-icon.png" alt=""> @Html.ActionLink("Search", "Company_search", "Business_Home")</a></li>
-                <li><a href=""><button> @Html.ActionLink("Business Sign Up", "BusinessSignUp", "Home")</button></a></li>
+                <li> @Html.ActionLink(" Browse category", "Browse_category", "Business_Home")</li>
+                <li> @Html.ActionLink(" Sign Up", "Client_Sign_up", "ClientAccount") </li>
+                <li> @Html.ActionLink(" Login", "Business_login", "Business_Home")</li>    
+                <li><a href='@Url.Action("Company_search", "Business_Home")' id="search"> <img src='@Url.Content("~/Assets/images/search-icon.png")'"/>Search</a></li>
+                <li><a href='@Url.Action("BusinessSignUp", "Home")'><button > Business Sign Up</button></a></li>
             </ul>
         </div>
         <div class="mobnav">

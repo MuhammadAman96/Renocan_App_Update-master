@@ -30,7 +30,7 @@ namespace RenocanWeb.Controllers
         {
             var RegistrationCompany = new RegistrationCompany();
             List<SelectListItem> BusinessCategoryList = GetBusinessCategoryList();
-            RegistrationCompany.BusinessCategoryList = BusinessCategoryList;            
+            RegistrationCompany.BusinessCategoryList = BusinessCategoryList;
             return View(RegistrationCompany);
         }
 
@@ -49,7 +49,7 @@ namespace RenocanWeb.Controllers
                 }
                 return BusinessCategoryList;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //LogError(ex);
                 return null;
@@ -60,17 +60,21 @@ namespace RenocanWeb.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        [ValidateAntiForgeryToken]      
+        [ValidateAntiForgeryToken]
         public ActionResult BusinessSignUp(RegistrationCompany registrationCompany)
         {
-            if (ModelState.IsValid)
+            try
             {
-                      SqlParameter[] parameters =
+                List<SelectListItem> BusinessCategoryList = GetBusinessCategoryList();
+                registrationCompany.BusinessCategoryList = BusinessCategoryList;
 
-                   {new SqlParameter("@Company_Name", SqlDbType.NVarChar) { Value = registrationCompany.CompanyName},
+                if (ModelState.IsValid)
+                {
+                    SqlParameter[] parameters =
+                 {      new SqlParameter("@Company_Name", SqlDbType.NVarChar) { Value = registrationCompany.CompanyName},
                     new SqlParameter("@Owner_First_Name", SqlDbType.NVarChar) { Value = registrationCompany.Owner_First_Name},
                       new SqlParameter("@Owner_Last_Name",SqlDbType.NVarChar){Value=registrationCompany.Owner_Last_Name},
-                      new SqlParameter("@Category_ID",SqlDbType.NVarChar){Value=registrationCompany.BusinessCategoryId},
+                      new SqlParameter("@Category_ID",SqlDbType.Int){Value=registrationCompany.BusinessCategoryId},
                     new SqlParameter("@PostalCode",SqlDbType.NVarChar){Value=registrationCompany.PostalCode},
                       new SqlParameter("@Email", SqlDbType.NVarChar) { Value = registrationCompany.Email },
                        new SqlParameter("@Create_Password",SqlDbType.NVarChar){Value=registrationCompany.Create_Password},
@@ -80,32 +84,33 @@ namespace RenocanWeb.Controllers
                       }
                };
 
-                if (DataAccess.ExecuteNonQuery(AppConfigurations.ConnectionString, "Insert_Update_Company_Registration", parameters))
-                    return RedirectToAction("BusinessSignUp");
-                else
-                {
-                    registrationCompany.IsError = true;
-                    registrationCompany.ErrorMessage = Constants.ErrorMesssage;
+                    DataSet ds = DataAccess.GetDataSet(AppConfigurations.ConnectionString, "Insert_Update_Company_Registration", parameters);
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        if (ds.Tables[0].Rows[0]["Status"].ToString() == "inserted")
+                        {
+                            Session["CompanyId"] = ds.Tables[0].Rows[0]["CompanyID"];
+                            return RedirectToAction("Listing", "Business_Home");
+                        }
+                        else if (ds.Tables[0].Rows[0]["Status"].ToString() == "already exist") {
+
+                            ModelState.AddModelError("Email", "Email already registered.");
+                        }
+
+                    }
+                    else
+                    {
+                        registrationCompany.IsError = true;
+                        registrationCompany.ErrorMessage = Constants.ErrorMesssage;
+                    }
+
                 }
-
+                return View(registrationCompany);
             }
-            return View(registrationCompany);
+            catch (Exception ex)
+            {
+                return View(registrationCompany);
+            }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

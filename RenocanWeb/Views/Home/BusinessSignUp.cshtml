@@ -46,7 +46,8 @@
                         @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "text-red" })
                     </fieldset>
                     <fieldset>
-                        @Html.DropDownListFor(m => m.BusinessCategoryId, Model.BusinessCategoryList, "Select Business Category", new { @id = "ddlcategory" })
+
+                        @Html.DropDownListFor(m => m.BusinessCategoryId, Model.BusinessCategoryList, "Select Business Category", new { @id = "BusinessCategoryId" })
                         @Html.ValidationMessageFor(m => m.BusinessCategoryId, "", new { @class = "text-red" })
                     </fieldset>
                     <fieldset>
