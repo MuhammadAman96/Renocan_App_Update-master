@@ -342,6 +342,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Upload_Images\Gallery\" />
+    <Folder Include="Assets\Upload_Images\Profile\" />
     <Folder Include="Views\AdminBase\" />
     <Folder Include="Views\User_Account\" />
   </ItemGroup>

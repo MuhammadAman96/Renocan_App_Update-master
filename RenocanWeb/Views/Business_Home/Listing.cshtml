@@ -37,10 +37,10 @@
 
                         <li><i class="fa fa-briefcase"></i> @Html.ActionLink("toolkit", "toolkit", "Business_Home")</li>
 
-                      
+
                         <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
-                       
-                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+
+                        <li><a href='@Url.Action("LogOut","Business_Home")'><i class="fa fa-sign-out"></i> Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,128 +80,129 @@
                     </div>
                     <div class="meta">
                         <span>Listing Details</span>
-                        @using (Html.BeginForm())
-    {
-                    @Html.AntiForgeryToken()
+                        <form method="post">
+                            
+                            @Html.AntiForgeryToken()
 
-                    <fieldset>
-                        <label for="">Basic Profile Information</label>
-                        @Html.TextAreaFor(m => m.Profile_Information, new { cols = "30", rows = "5", placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Profile_Information, "", new { @class = "text-red" })
+                            <fieldset>
+                                <label for="">Basic Profile Information</label>
+                                @Html.TextAreaFor(m => m.Profile_Information, new { cols = "30", rows = "5", placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Profile_Information, "", new { @class = "text-red" })
 
-                    </fieldset>
-
-
-                    <fieldset>
-                        <label for="">Website</label>
-                        @Html.TextBoxFor(m => m.Website_Add, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Website_Add, "", new { @class = "text-red" })
-
-                    </fieldset>
-                    <hr>
-                    <fieldset class="half">
-                        <label for="">Products</label>
-
-                        @Html.TextAreaFor(m => m.Products, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Products, "", new { @class = "text-red" })
-                    </fieldset>
+                            </fieldset>
 
 
-                    <fieldset class="half">
-                        <label for="">Services</label>
-                        @Html.TextAreaFor(m => m.Services, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Services, "", new { @class = "text-red" })
+                            <fieldset>
+                                <label for="">Website</label>
+                                @Html.TextBoxFor(m => m.Website_Add, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Website_Add, "", new { @class = "text-red" })
 
-                    </fieldset>
+                            </fieldset>
+                            <hr>
+                            <fieldset class="half">
+                                <label for="">Products</label>
+
+                                @Html.TextAreaFor(m => m.Products, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Products, "", new { @class = "text-red" })
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Services</label>
+                                @Html.TextAreaFor(m => m.Services, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Services, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Brands</label>
+                                @Html.TextAreaFor(m => m.Brands, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Brands, "", new { @class = "text-red" })
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Specialities</label>
+                                @Html.TextAreaFor(m => m.Specialities, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Specialities, "", new { @class = "text-red" })
+
+                            </fieldset>
+                            <hr>
+                            <fieldset class="half">
+                                <label for="">Year Established</label>
+                                @Html.TextAreaFor(m => m.Year_Established, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Year_Established, "", new { @class = "text-red" })
+
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Return Policy (URL)</label>
+                                @Html.TextAreaFor(m => m.Return_Policy_URL, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Return_Policy_URL, "", new { @class = "text-red" })
+
+                            </fieldset>
+                            <fieldset class="half">
+                                <label for="">Payment Method (URL)</label>
+                                @Html.TextAreaFor(m => m.Payment_Method_URL, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Payment_Method_URL, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Licences (URL)</label>
+                                @Html.TextAreaFor(m => m.Licences_URL, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Licences_URL, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Insurance (URL)</label>
+                                @Html.TextAreaFor(m => m.Insurance_URL, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Insurance_URL, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Certificates (URL)</label>
+                                @Html.TextAreaFor(m => m.Certificates_URL, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Certificates_URL, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Pricing</label>
+                                @Html.TextAreaFor(m => m.Pricing, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Pricing, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Contract Based</label>
+                                @Html.TextAreaFor(m => m.Contract_Based, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Contract_Based, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <fieldset class="half">
+                                <label for="">Warranty</label>
+                                @Html.TextAreaFor(m => m.Warranty, new { placeholder = "", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Warranty, "", new { @class = "text-red" })
+
+                            </fieldset>
+
+
+                            <div class="btn">
+                                <input type="submit" value="Save Changes">
+                                <input type="reset" value="Cancel">
+                            </div>
+                        </form>
                         
-
-                    <fieldset class="half">
-                        <label for="">Brands</label>
-                        @Html.TextAreaFor(m => m.Brands, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Brands, "", new { @class = "text-red" })
-                    </fieldset>
-
-
-                    <fieldset class="half">
-                        <label for="">Specialities</label>
-                        @Html.TextAreaFor(m => m.Specialities, new { cols = "30", rows = "2", placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Specialities, "", new { @class = "text-red" })
-
-                    </fieldset>
-                    <hr>
-                    <fieldset class="half">
-                        <label for="">Year Established</label>
-                        @Html.TextAreaFor(m => m.Year_Established, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Year_Established, "", new { @class = "text-red" })
-
-                    </fieldset>
-                    <fieldset class="half">
-                        <label for="">Return Policy (URL)</label>
-                        @Html.TextAreaFor(m => m.Return_Policy_URL, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Return_Policy_URL, "", new { @class = "text-red" })
-
-                    </fieldset>
-                    <fieldset class="half">
-                        <label for="">Payment Method (URL)</label>
-                        @Html.TextAreaFor(m => m.Payment_Method_URL, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Payment_Method_URL, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-
-                    <fieldset class="half">
-                        <label for="">Licences (URL)</label>
-                        @Html.TextAreaFor(m => m.Licences_URL, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Licences_URL, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-
-                    <fieldset class="half">
-                        <label for="">Insurance (URL)</label>
-                        @Html.TextAreaFor(m => m.Insurance_URL, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Insurance_URL, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-
-                    <fieldset class="half">
-                        <label for="">Certificates (URL)</label>
-                        @Html.TextAreaFor(m => m.Certificates_URL, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Certificates_URL, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-
-                    <fieldset class="half">
-                        <label for="">Pricing</label>
-                        @Html.TextAreaFor(m => m.Pricing, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Pricing, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-
-                    <fieldset class="half">
-                        <label for="">Contract Based</label>
-                        @Html.TextAreaFor(m => m.Contract_Based, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Contract_Based, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-
-                    <fieldset class="half">
-                        <label for="">Warranty</label>
-                        @Html.TextAreaFor(m => m.Warranty, new { placeholder = "", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Warranty, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-
-                    <div class="btn">
-                        <input type="submit" value="Save Changes">
-                        <input type="reset" value="Cancel">
-                    </div>
-}
 
                     </div>
 

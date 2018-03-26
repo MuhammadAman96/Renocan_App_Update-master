@@ -4,7 +4,10 @@ using RenocanWeb.Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace RenocanWeb.Controllers
 {
@@ -46,8 +49,8 @@ namespace RenocanWeb.Controllers
 
                     {
                     new SqlParameter("@Company_ID", SqlDbType.Int) { Value =Convert.ToInt32(Session["CompanyId"])},
-                    new SqlParameter("@IsAggrement", SqlDbType.Bit) { Value = registrationCompany.IsAggrement},
-                    new SqlParameter("@Is_Paid", SqlDbType.Bit) { Value = registrationCompany.Is_Paid},
+                    //new SqlParameter("@IsAggrement", SqlDbType.Bit) { Value = registrationCompany.IsAggrement},
+                    //new SqlParameter("@Is_Paid", SqlDbType.Bit) { Value = registrationCompany.Is_Paid},
                       new SqlParameter("@Website_Add",SqlDbType.NVarChar){Value=registrationCompany.Website_Add},
                     new SqlParameter("@Profile_Information",SqlDbType.NVarChar){Value=registrationCompany.Profile_Information},
                       new SqlParameter("@Products", SqlDbType.NVarChar) { Value = registrationCompany.Products },                       
@@ -62,11 +65,12 @@ namespace RenocanWeb.Controllers
                        new SqlParameter("@Certificates_URL",SqlDbType.NVarChar){Value=registrationCompany.Certificates_URL},
                       new SqlParameter("@Pricing",SqlDbType.NVarChar){Value= registrationCompany.Pricing },
                        new SqlParameter("@Contract_Based",SqlDbType.NVarChar){Value=registrationCompany.Contract_Based},
-                      new SqlParameter("@Warranty",SqlDbType.NVarChar){Value= registrationCompany.Warranty}
+                      new SqlParameter("@Warranty",SqlDbType.NVarChar){Value= registrationCompany.Warranty},
+                      new SqlParameter("@Ip",SqlDbType.NVarChar){Value= Constants.GetUserIP()}
 
                          };
 
-                    if (DataAccess.ExecuteNonQuery(AppConfigurations.ConnectionString, "Insert_Update_Remaining_Company_Registration", parameters))
+                    if (DataAccess.ExecuteNonQuery(AppConfigurations.ConnectionString, "Update_Remaining_Company_Registration", parameters))
                         return RedirectToAction("Activity", "Business_Home");
                     else
                     {
@@ -77,15 +81,6 @@ namespace RenocanWeb.Controllers
             }
             return View(registrationCompany);
         }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -153,12 +148,12 @@ namespace RenocanWeb.Controllers
                     DataSet ds = DataAccess.GetDataSet(AppConfigurations.ConnectionString, "Check_BusinessLogin", parameters);
                     if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                     {
-                        if (ds.Tables[0].Rows[0]["Status"].ToString() == "True")
+                        if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["Company_ID"].ToString()))
                         {
-                            Session["CompanyId"] = ds.Tables[0].Rows[0]["CompanyID"];
+                            Session["CompanyId"] = ds.Tables[0].Rows[0]["Company_ID"];
                             return RedirectToAction("Listing", "Business_Home");
                         }
-                        else if (ds.Tables[0].Rows[0]["Status"].ToString() == "Not Exists")
+                        else 
                         {
 
                             ModelState.AddModelError("Email", "Incorrect Email or Password");
@@ -181,7 +176,12 @@ namespace RenocanWeb.Controllers
         }
 
 
-
+        public ActionResult LogOut()
+        {
+            //  FormsAuthentication.SignOut();
+            Session.Abandon(); // it will clear the session at the end of request
+            return RedirectToAction("Index", "Home");
+        }
 
 
 

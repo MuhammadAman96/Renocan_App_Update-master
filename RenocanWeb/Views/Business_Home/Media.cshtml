@@ -32,7 +32,7 @@
                         <li><i class="fa fa-bar-chart"></i>@Html.ActionLink("Scoreboard", "Scoreboard", "Business_Home")</li>
                         <li><i class="fa fa-briefcase"></i> @Html.ActionLink("toolkit", "toolkit", "Business_Home")</li>
                         <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
-                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        <li><a href='@Url.Action("LogOut","Business_Home")'><i class="fa fa-sign-out"></i> Log Out</a></li>
 
                     </ul>
                 </div>

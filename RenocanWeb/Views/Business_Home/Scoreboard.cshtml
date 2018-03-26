@@ -29,7 +29,7 @@
                 <div class="menu">
                     <ul>
                         <li><a href=""><i class="fa fa-clock-o"></i> @Html.ActionLink("Activity", "Activity", "Business_Home")</a></li>
-                        
+
                         <li><i class="fa fa-list-ul"></i>@Html.ActionLink("Company Listing", "Listing", "Business_Home")</li>
                         <li><a href=""><i class="fa fa-money"></i> Payment Setting</a></li>
                         <li><i class="fa fa-photo"></i>@Html.ActionLink("Galleries", "Media", "Business_Home")</li>
@@ -37,7 +37,7 @@
                         <li class="active"><a href=""><i class="fa fa-bar-chart"></i> Scoreboard</a></li>
                         <li><i class="fa fa-briefcase"></i> @Html.ActionLink("toolkit", "toolkit", "Business_Home")</li>
                         <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
-                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        <li><a href='@Url.Action("LogOut","Business_Home")'><i class="fa fa-sign-out"></i> Log Out</a></li>
 
                     </ul>
                 </div>
