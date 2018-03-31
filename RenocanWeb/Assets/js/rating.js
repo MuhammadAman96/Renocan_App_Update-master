@@ -103,13 +103,13 @@ $(function() {
     return $(".starrr").starrr();
 });
 
-$( document ).ready(function() {
+//$( document ).ready(function() {
       
-  $('#stars').on('starrr:change', function(e, value){
-    $('#count').html(value);
-  });
+//  $('#stars').on('starrr:change', function(e, value){
+//    $('#count').html(value);
+//  });
   
-  $('#stars-existing').on('starrr:change', function(e, value){
-    $('#count-existing').html(value);
-  });
-});
+//  $('#stars-existing').on('starrr:change', function(e, value){
+//    $('#count-existing').html(value);
+//  });
+//});

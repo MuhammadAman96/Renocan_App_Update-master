@@ -1,5 +1,6 @@
-﻿
-@model RenocanWeb.Models.RegistrationCompany
+﻿@Html.Raw(TempData["msg"])
+
+@model RenocanWeb.Models.Company_Search
 @*@{
         ViewBag.Title = "Company search";
     }*@
@@ -10,13 +11,19 @@
 
     <div id="companysearch">
         <div class="content">
+
+
             <span>Search for Company</span>
-            <form action="">
+            <form method="post">
+                @Html.AntiForgeryToken()
                 <fieldset>
-                    <input type="text" placeholder="Company Name">
+                    @Html.TextBoxFor(m => m.CompanyName, new { placeholder = "Company Name", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "text-red" })
                 </fieldset>
                 <fieldset>
-                    <input type="text" placeholder="Toronto">
+
+                    @Html.TextBoxFor(m => m.Location, new { placeholder = "Toronto", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-red" })
                 </fieldset>
                 <fieldset>
                     <button type="submit"><i class="fa fa-search"></i></button>
@@ -32,14 +39,12 @@
                     <li><i class="fa fa-dot-circle-o"></i> <a href="">Review as a New Company</a></li>
                 </ul>
             </div>
+
         </div>
+
     </div>
 
 
     <hr>
-
-    
-
-
 </body>
 

@@ -61,6 +61,9 @@ namespace RenocanWeb.Models
         public int BusinessCategoryId { get; set; }
         public IEnumerable<SelectListItem> BusinessCategoryList { get; set; }
 
+        public int LocationId { get; set; }
+        public IEnumerable<SelectListItem> LocationList { get; set; }
+
     }
 
 }

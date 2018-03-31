@@ -1,0 +1,148 @@
+﻿@model RenocanWeb.Models.CompaniesSearchVM
+@using RenocanWeb.Common;
+
+@if (Model.CompanyList != null && Model.CompanyList.Count() != 0)
+{
+    foreach (var item in Model.CompanyList.Select((value, i) => new { i = i + 1, value }))
+    {
+        <div class="box">
+            <div class="favorite">
+                @*<a href=""><i class='@item.value.IsBookmark == true ? "fa fa-bookmark" :"fa fa-bookmark-o"'></i></a>*@
+                <a href=""><i class="@( (item.value.IsBookmark == true ? "fa fa-bookmark-o" : "fa fa-bookmark"))"></i></a>
+                    <!--<a href=""><i class="fa fa-bookmark"></i></a>-->
+                </div>
+            <div class="img">
+                        
+               
+                <img src=" @(Common.ClientProfileImageVD + item.value.Logo )" width="120" height="120" alt="Not Found">
+            </div>
+            <div class="detail">
+                <div class="name">@item.value.CompanyName</div>
+                <div class="review">
+                    <div class="stars"><i class="fa fa-star"></i> @item.value.Rating <span>/10</span></div>
+                    <div class="total"><span>Total Reviews:</span> @item.value.TotalReviews</div>
+                    <div class="badge gold"><i class="fa fa-certificate"></i> Bes   t of @DateTime.Now.Year</div>
+
+                </div>
+                <div class="contact">
+                    <ul>
+
+                        <li><a href=""><i class="fa fa-comment"></i> Get a Quote</a></li>
+                        <li><a href=""><i class="fa fa-phone"></i>    @item.value.Phone </a></li>
+                        <li><a href=""><i class="fa fa-envelope"></i> @item.value.Email</a></li>
+                        <li><a href=""><i class="fa fa-globe"></i> @item.value.Website</a></li>
+
+                        <li><a href='@Url.Action("Write_a_review", "ClientAccount")'><i class="fa fa-edit"></i> Write a Review</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="desc">
+                @item.value.Profile_Information
+            </div>
+        </div>
+
+    }
+}
+<script>
+    @*var ScreenId = '@Model.Id';
+    var chk = true;
+    function DataValidation(btn) {
+        chk = true;
+        data = {};
+        object = [];
+        //var regExp = new RegExp("^-*[0-9,\.]+$");
+        data.Id = ScreenId;
+        data.Title = $('#Title').val();
+        data.URL = $('#URL').val();
+        data.Sequence = $('#Sequence').val();
+        data.IconClass = $('#IconClass').val();
+        data.ParentCode = $('#ParentCode').val();
+        data.LevelType = $('#LevelType').val();
+        object.push(data);
+        if (data.Title.length < 1 || data.Title.length > 500) {
+            $('#Title').addClass('error');
+            chk = false;
+        }
+        if (data.Sequence.length < 1 || data.Sequence.length > 5 || data.Sequence <= 0 ) {
+            $('#Sequence').addClass('error');
+            chk = false;
+        }
+        //if (data.URL.length < 1 || data.URL.length > 500) {
+        //    $('#URL').addClass('error');
+        //    chk = false;
+        //}
+        return object;
+    }
+
+    function UpdateScreen(btn) {
+        $(".error").removeClass("error");
+        data = {};
+        data.CatalogueList = DataValidation(btn);
+        if (chk == true) {
+            $.ajax({
+                async: true,
+                type: 'Post',
+                cache: false,
+                data: data,
+                crossDomain: true,
+                url: '_Screen',
+                success: function (data) {
+
+                    if (data.IsValid) {
+                        if (data.Id == null) {
+                            Helper.Methods.ShowPopUp('Success', 'Screen added successfully');
+                        }
+                        else {
+                            Helper.Methods.ShowPopUp('Success', 'Screen updated successfully');
+                        }
+                        $('#modal-AddScreen').modal('hide');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $('.responseMessage').text(data.Message);
+                        $('.responseMessage').addClass('red-text');
+                    }
+
+                }
+            });
+        }
+        else {
+            return;
+        }
+    }
+
+
+    $('#IconClass,#Title').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9\-\_ ]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+    $('#URL').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9\?\=\$\%\~\+\-\_\.\/ ]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+    $('#Sequence').on('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });*@
+
+
+</script>
+
+
+
+
+

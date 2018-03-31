@@ -18,5 +18,7 @@ namespace RenocanCommon
         }
 
         public  static string ErrorMesssage = "Your request can't be completed at this moment please contact your administrator";
+
+       
     }
 }

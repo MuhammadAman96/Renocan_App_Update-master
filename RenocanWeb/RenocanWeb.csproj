@@ -168,6 +168,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Common.cs" />
     <Compile Include="Common\CompanyBaseController.cs" />
     <Compile Include="Common\AppConfigurations.cs" />
     <Compile Include="Common\BaseController.cs" />
@@ -181,7 +182,10 @@
     <Compile Include="Models\Admin_Signup.cs" />
     <Compile Include="Models\Bookmark.cs" />
     <Compile Include="Models\Business_Home.cs" />
+    <Compile Include="Models\City_ListVM.cs" />
     <Compile Include="Models\Client_Signup.cs" />
+    <Compile Include="Models\CompaniesSearchVM.cs" />
+    <Compile Include="Models\Company_Search.cs" />
     <Compile Include="Models\Company_Service_Location.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image_Gallary.cs" />
@@ -261,10 +265,13 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -339,11 +346,13 @@
     <Content Include="Views\ClientAccount\Client_new_password_.cshtml" />
     <Content Include="Views\ClientAccount\Client_Information.cshtml" />
     <Content Include="Views\Home\Company_search_list.cshtml" />
+    <Content Include="Views\Shared\_Company_List.cshtml" />
+    <Content Include="Views\Shared\_City_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Assets\Upload_Images\Gallery\" />
-    <Folder Include="Assets\Upload_Images\Profile\" />
+    <Folder Include="App_Data\UploadedImage\Client\" />
+    <Folder Include="App_Data\UploadedImage\Company\Gallery\" />
+    <Folder Include="App_Data\UploadedImage\Company\Profile\" />
     <Folder Include="Views\AdminBase\" />
     <Folder Include="Views\User_Account\" />
   </ItemGroup>

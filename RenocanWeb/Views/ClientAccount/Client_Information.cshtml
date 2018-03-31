@@ -1,19 +1,17 @@
 ﻿
 
-
-@model RenocanWeb.Models.RegistrationCompany
+@model RenocanWeb.Models.Client_Signup
 @*@{
         ViewBag.Title = "Client_Information";
     }*@
 
 
 <body>
-
     <div id="dashboard">
         <div class="content">
             <div class="left">
                 <div class="profile">
-                    <img src="images/user-profile-img.jpg" alt="">
+                    <img src="~/Assets/images/user-profile-img.jpg" alt="">
                     <div class="details">
                         <span class="name">
                             Catherine Dobre
@@ -34,7 +32,7 @@
                         <li><i class="fa fa-clock-o"></i>@Html.ActionLink("Activity", "Client_activity", "ClientAccount")</li>
                         <li><i class="fa fa-comments"></i>@Html.ActionLink("My Review", "Client_review", "ClientAccount")</li>
                         <li><a href=""><i class="fa fa-user"></i> Account Information</a></li>
-                        <li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        <li><a href='@Url.Action("LogOut", "ClientAccount")'><i class="fa fa-sign-out"></i> Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,40 +41,59 @@
                 <span class="heading"><i class="fa fa-user"></i> Account Information</span>
 
                 <div class="accountinfo">
-                    <form action="">
+                    <form method="post">
+                        @Html.AntiForgeryToken()
                         <span class="title">Personal Details</span>
-                        <div class="error"><span><i class="fa fa-times"></i> Please Enter the Required Fields.</span></div>
+                        @Html.HiddenFor(model => model.Client_ID)
+                        @*<div class="error"><span><i class="fa fa-times"></i> Please Enter the Required Fields.</span></div>*@
+
                         <fieldset>
-                            <input type="text" placeholder="First Name">
+                            @Html.TextBoxFor(m => m.First_Name, new { placeholder = "First Name", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.First_Name, "", new { @class = "text-red" })
+
                         </fieldset>
                         <fieldset>
-                            <input type="text" placeholder="Last Name">
+                            @Html.TextBoxFor(m => m.Last_Name, new { placeholder = "Last Name", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.Last_Name, "", new { @class = "text-red" })
+                            @* <input type="text" placeholder="Last Name">*@
                         </fieldset>
                         <fieldset>
-                            <input type="text" placeholder="City">
+                            @Html.TextBoxFor(m => m.City, new { placeholder = "City", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-red" })
+                            @*<input type="text" placeholder="City">*@
                         </fieldset>
                         <fieldset>
-                            <input type="text" placeholder="State">
+                            @Html.TextBoxFor(m => m.State, new { placeholder = "State", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-red" })
+                            @*<input type="text" placeholder="State">*@
                         </fieldset>
                         <fieldset>
-                            <input type="email" placeholder="Email Address">
+                            @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red" })
+                            @*<input type="email" placeholder="Email Address">*@
                         </fieldset>
                         <fieldset>
-                            <input type="text" placeholder="Phone">
+                            @Html.TextBoxFor(m => m.Phone, new { placeholder = "Phone", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-red" })
+                            @*<input type="text" placeholder="Phone">*@
                         </fieldset>
 
                         <span class="title">Credentials Details</span>
                         <fieldset>
-                            <input type="password" placeholder="New Password">
+                            @Html.TextBoxFor(m => m.Create_Password, new { placeholder = "Create Password", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.Create_Password, "", new { @class = "text-red" })
+                            @*<input type="password" placeholder="New Password">*@
                         </fieldset>
                         <fieldset>
-                            <input type="password" placeholder="Confirm Password">
+                            @Html.TextBoxFor(m => m.Confirm_Password, new { placeholder = "Confirm Password", @maxlength = "50" })
+                            @Html.ValidationMessageFor(m => m.Confirm_Password, "", new { @class = "text-red" })
+                            @*<input type="password" placeholder="Confirm Password">*@
                         </fieldset>
                         <div class="newsletter">
-                            <input type="checkbox"> Sign up to RenoCan Newsletter.
+                            @Html.CheckBoxFor(m => m.IsNewsletter) Sign up to RenoCan Newsletter.
                         </div>
-                        <input type="submit" value="Save Changes">
-                        <div class="success"><span><i class="fa fa-check-circle"></i> Your Changes have been Updated</span></div>
+                         <input type="submit" value="Save Changes" onclick="return foo();">
+                        @*<div class="success"><span><i class="fa fa-check-circle"></i> Your Changes have been Updated</span></div>*@
                     </form>
                 </div>
 
@@ -85,4 +102,15 @@
         </div>
     </div>
 
+
+
+
+
 </body>
+<script>
+    function foo() {
+        alert("Your Changes have been Updated !");
+        return true;
+    }
+       
+    </script>

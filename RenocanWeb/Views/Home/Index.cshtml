@@ -1,10 +1,12 @@
-﻿
+﻿@Html.Raw(TempData["msg"])
+@model RenocanWeb.Models.Company_Search
+
 @{
     ViewBag.Title = "Index";
 }
 
 <body>
-   
+
     <div id="mainbanner">
         <div class="content">
             <span class="mainheading">
@@ -15,19 +17,26 @@
             </span>
 
             <div class="buttons">
-                <a href="" class="signup">Create Account</a>
-                <a href="" class="facebook"><i class="fa fa-facebook"></i></a>
-                <a href="" class="twitter"><i class="fa fa-twitter"></i></a>
-                <a href="" class="googleplus"><i class="fa fa-google-plus"></i></a>
+                <a href='@Url.Action("BusinessSignUp", "Home")' class="signup">Create Account</a>
+                <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/login/" class="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="https://mail.google.com/" class="googleplus"><i class="fa fa-google-plus"></i></a>
             </div>
         </div>
 
         <div class="blackbar">
-            <form action="">
-                <input type="text" placeholder="Search Company here...">
-                <select name="" id="">
-                    <option value="">Mississuaga</option>
-                </select>
+            <form method="post">
+                @Html.AntiForgeryToken()
+
+                
+                    @Html.TextBoxFor(m => m.CompanyName, new { placeholder = "Company Name", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "text-red" })
+                
+                    @Html.TextBoxFor(m => m.Location, new { placeholder = "Toronto", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-red" })
+                
+
+
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -112,7 +121,7 @@
                 </div>
             </a>
 
-            <a href="" class="button">Browse All Categories</a>
+            <a href='@Url.Action("Browse_category", "Business_Home")' class="button">Browse All Categories</a>
 
         </div>
     </div>
@@ -120,7 +129,7 @@
     <div id="mrsec">
         <div class="content">
             <span class="mainheading">
-                Most Recommended Companies of 2016
+                Most Recommended Companies of  @DateTime.Now.Year
             </span>
             <div class="logos">
                 <img src="~/Assets/images/brand-logo-01.png" alt="">
@@ -214,9 +223,9 @@
             <p>At RenoCAN® we make it possible for everyone to create a unique and personal look by introducing a large range of different fabrics, lovely patterns and beautiful colors.</p>
 
             <ul>
-                <li><a href=""><img src="~/Assets/images/google-plus-icon.png" alt=""></a></li>
-                <li><a href=""><img src="~/Assets/images/facebook-icon.png" alt=""></a></li>
-                <li><a href=""><img src="~/Assets/images/twitter-icon.png" alt=""></a></li>
+                <li><a href="https://www.facebook.com/"><img src="~/Assets/images/google-plus-icon.png" alt=""></a></li>
+                <li><a href="https://twitter.com/login/"><img src="~/Assets/images/facebook-icon.png" alt=""></a></li>
+                <li><a href="https://mail.google.com/mail/"><img src="~/Assets/images/twitter-icon.png" alt=""></a></li>
             </ul>
 
         </div>

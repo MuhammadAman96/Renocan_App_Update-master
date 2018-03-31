@@ -17,14 +17,107 @@ namespace RenocanWeb.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
-        }
 
+            
+        }
+        
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(Company_Search company_Search)
+        {
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    SqlParameter[] parameters =
+                 {      new SqlParameter("@company_Name", SqlDbType.NVarChar) { Value =company_Search.CompanyName },
+                        new SqlParameter("@location_Name", SqlDbType.NVarChar) { Value = company_Search.Location}
+
+
+                 };
+
+                    DataSet ds = DataAccess.GetDataSet(AppConfigurations.ConnectionString, "Search_Company_Main", parameters);
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["CompanyName"].ToString()))
+                        {
+
+                            return RedirectToAction("Company_search_list", "Home");
+                        }
+                        else
+                        {
+
+                            TempData["msg"] = "<script>alert('Not Found');</script>";
+                        }
+
+                    }
+                    else
+                    {
+
+                        TempData["msg"] = "<script>alert('Not Found');</script>";
+                        company_Search.IsError = true;
+                        company_Search.ErrorMessage = Constants.ErrorMesssage;
+                    }
+
+                }
+                return View(company_Search);
+            }
+            catch (Exception)
+            {
+                return View(company_Search);
+            }
+        }
+        
         public ActionResult Company_search_list()
         {
             return View();
         }
 
+
+
+        [HttpGet]
+        public ActionResult getCompanyList(string cat,string loc)
+        {
+
+            
+            return View();
+        }
+
+
+        public DataTable GetCompanyList(string cat, string loc)
+        {
+            try
+            {
+                SqlParameter[] parameters =
+               {
+                new SqlParameter("@category_Name",SqlDbType.VarChar){Value= cat },
+                new SqlParameter("@location_Name",SqlDbType.VarChar){Value= loc }
+
+               };
+
+                return DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Select_CompanyList", parameters);
+            }
+            catch (Exception ex)
+            {
+                //LogError(ex);
+                return null;
+            }
+        }
+
+
+
+        public ActionResult _Company_list(string CategoryName, string CityName)
+        {
+            CompaniesSearchVM objCompanyResponseModel = new CompaniesSearchVM();
+            DataTable datatable = GetCompanyList(CategoryName,CityName);
+            objCompanyResponseModel.CompanyList = EnumerableExtension.ToList<CompaniesSearch>(datatable);
+
+            return PartialView(objCompanyResponseModel);
+        }
 
         public ActionResult BusinessSignUp()
         {
@@ -55,9 +148,7 @@ namespace RenocanWeb.Controllers
                 return null;
             }
         }
-
-
-
+        
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]

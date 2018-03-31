@@ -162,6 +162,7 @@ namespace RenocanWeb.Controllers
                     }
                     else
                     {
+                        ModelState.AddModelError("Email", "Incorrect Email or Password");
                         login.IsError = true;
                         login.ErrorMessage = Constants.ErrorMesssage;
                     }
@@ -200,6 +201,65 @@ namespace RenocanWeb.Controllers
         {
             return View();
         }
+
+
+        //comapny search
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Company_search(Company_Search company_Search)
+        {
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    SqlParameter[] parameters =
+                 {      new SqlParameter("@company_Name", SqlDbType.NVarChar) { Value =company_Search.CompanyName },
+                        new SqlParameter("@location_Name", SqlDbType.NVarChar) { Value = company_Search.Location}
+
+
+                 };
+
+                    DataSet ds = DataAccess.GetDataSet(AppConfigurations.ConnectionString, "Search_Company_Main", parameters);
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["CompanyName"].ToString()))
+                        {
+                            
+                            return RedirectToAction("Company_search_list", "Home");
+                        }
+                        else
+                        {
+
+                            TempData["msg"] = "<script>alert('Not Found');</script>";
+                        }
+
+                    }
+                    else
+                    {
+
+                        TempData["msg"] = "<script>alert('Not Found');</script>";
+                        company_Search.IsError = true;
+                        company_Search.ErrorMessage = Constants.ErrorMesssage;
+                    }
+
+                }
+                return View(company_Search);
+            }
+            catch (Exception)
+            {
+                return View(company_Search);
+            }
+        }
+
+
+
+
+
+
+
+
 
 
         public ActionResult Business_new_password_()

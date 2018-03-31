@@ -1,11 +1,7 @@
-﻿@model RenocanWeb.Models.Review
+﻿@model RenocanWeb.Models.RegistrationCompany
 @*@{
         ViewBag.Title = "write a review";
     }*@
-
-
-
-
 <body>
     <div id="companies">
         <div class="content">
@@ -18,9 +14,13 @@
 
                     <div class="filter">
                         <div class="search">
-                            <input type="text" placeholder="Category Name">
-                            <input type="text" placeholder="City Name">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                            @*<form method="post">*@
+                                <input type="text" placeholder="Category Name" id="txtCategoryName">
+                                <input type="text" placeholder="City Name" id="txtCityName">
+                                @*@Html.TextBoxFor(m => m, new { placeholder = "City", @maxlength = "50" })
+                                @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-red" })*@
+                                <button type="submit" onclick="getCompanies()"><i class="fa fa-search"></i></button>
+                            @*</form>*@
                         </div>
 
                         <div class="sort">
@@ -34,37 +34,10 @@
                     </div>
 
 
-                    <div class="box">
-                        <div class="favorite">
-                            <a href=""><i class="fa fa-bookmark-o"></i></a>
-                            <!--<a href=""><i class="fa fa-bookmark"></i></a>-->
-                        </div>
-                        <div class="img">
-                            <img src="~/Assets/images/company-logo-06.jpg" alt="">
-                        </div>
-                        <div class="detail">
-                            <div class="name">Unilever Private Ltd.</div>
-                            <div class="review">
-                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
-                                <div class="total"><span>Total Reviews:</span> 470</div>
-                                <div class="badge gold"><i class="fa fa-certificate"></i> Best of 2017</div>
+                    @*@Html.Partial("~/Views/Shared/_Company_List.cshtml", Model)*@
+                    <div id="companysearchResult"></div>
 
-                            </div>
-                            <div class="contact">
-                                <ul>
-                                    <li><a href=""><i class="fa fa-comment"></i> Get a Quote</a></li>
-                                    <li><a href=""><i class="fa fa-phone"></i> Phone</a></li>
-                                    <li><a href=""><i class="fa fa-envelope"></i> Email</a></li>
-                                    <li><a href=""><i class="fa fa-globe"></i> Website</a></li>
-                                    <li><a href=""><i class="fa fa-edit"></i> Write a Review</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="desc">
-                            At Unilever we meet everyday needs for nutrition, hygiene and personal care with brands that help people feel good, look good and get more out of life.
-                        </div>
-                    </div>
-                    <div class="box">
+                    @*<div class="box">
                         <div class="favorite">
                             <!--<a href=""><i class="fa fa-bookmark-o"></i></a>-->
                             <a href=""><i class="fa fa-bookmark"></i></a>
@@ -183,7 +156,11 @@
                         <div class="desc">
                             At Unilever we meet everyday needs for nutrition, hygiene and personal care with brands that help people feel good, look good and get more out of life.
                         </div>
-                    </div>
+                    </div>*@
+
+
+
+
                     <div class="load"><a href=""><i class="fa fa-spinner"></i> Load More</a></div>
                 </div>
                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
@@ -243,7 +220,7 @@
                                 <li><a href="">Game Rooms, Entertainment</a></li>
                                 <li><a href="">Art &amp; Print</a></li>
                             </ul>
-                            <a href="" class="link">View All Categories</a>
+                            <a href="@Url.Action("Browse_category","Business_Home")" class="link">View All Categories</a>
                         </div>
                     </div>
                 </div>
@@ -253,3 +230,79 @@
 
 </body>
 
+<script type="text/javascript">
+    var UnitLocationId;
+    //$(function () {
+    //    $('#dtScreen').DataTable();
+    //})
+    function Delete(Data) {
+        UnitLocationId = $(Data).attr('value');
+    }
+
+    function getCompanies() {
+        var CategoryName = $("#txtCategoryName").val();
+        var CityName = $("#txtCityName").val();
+
+        $.ajax({
+            async: true,
+            type: 'GET',
+            cache: false,
+            data: { CategoryName: CategoryName, CityName: CityName  },
+            dataType: 'html',   //response format
+            contentType: 'application/json; charset=utf-8', //request format
+            crossDomain: true,
+            url: '@Url.Action("_Company_list")',
+            success: function (data) {
+                debugger
+               
+                $('#companysearchResult').html(data);
+                //$('#modal-AddScreen').modal('show');
+                //$('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+    }
+
+    function addScreen() {
+
+        $.ajax({
+            dataType: "html",
+            async: true,
+            type: 'GET',
+            cache: false,
+            url: '@Url.Action("_Screen")',
+            data: { Id: null },
+            type: 'GET',
+            success: function (data) {
+                $('#AddScreen').html(data);
+                $('#modal-AddScreen').modal('show');
+                $('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
+            },
+        });
+    }
+
+    $(document).ready(function () {
+
+        //$("body").delegate("#btnDelete", "click", function () {
+        //    $.ajax({
+        //        async: true,
+        //        type: 'POST',
+        //        cache: false,
+        //        data: { Id: UnitLocationId },
+        //        url: AdminVD + '/Catalog/DeleteRoleScreen',
+        //        success: function (data) {
+        //            if (data == "success") {
+        //                Helper.Methods.ShowPopUp('Success', 'Screen deleted successfully!');
+        //                setTimeout(function () {
+        //                    location.reload();
+        //                }, 500);
+        //            }
+        //        }
+        //    });
+        //});
+
+
+    });
+</script>
