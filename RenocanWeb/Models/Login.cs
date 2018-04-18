@@ -22,4 +22,17 @@ namespace RenocanWeb.Models
         [Required(ErrorMessage = "Please Enter State")]
         public string Password { get; set; }
     }
+
+    public class Forget_Pass :Message
+    {
+
+        [AllowHtml]
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string Email { get; set; }
+
+
+    }
+
 }

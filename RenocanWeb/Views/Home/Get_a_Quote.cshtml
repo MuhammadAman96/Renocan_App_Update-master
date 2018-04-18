@@ -1,0 +1,74 @@
+﻿
+@model RenocanWeb.Models.Service_Request
+@{
+    ViewBag.Title = "Get_a_Quote";
+
+}
+@using RenocanWeb.Common;
+
+
+<body>
+
+
+    <div id="writeareview">
+        <div class="content">
+            <form method="post" class="search">
+                @Html.AntiForgeryToken()
+                <h1>Request a Quote for Company </h1>
+
+               
+
+                <fieldset>
+                    <label for="">Kind of Location</label>
+
+                    @Html.TextBoxFor(m => m.Kind_of_Location, new { placeholder = "Home Residence / Business", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Kind_of_Location, "", new { @class = "text-red" })
+
+                </fieldset>
+
+                <fieldset>
+                    <span>
+                        <label for=""> Work Site Location</label>
+                       
+                        @Html.TextBoxFor(m => m.Postal_Code, new { placeholder = "Toronto", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.Postal_Code, "", new { @class = "text-red" })
+                        @*<button type="submit" onclick="getCity()"><i class="fa fa-search"></i></button>*@
+                        @*<button class="btn btn-primary btn-xs" onclick="getCityList(@MOdel.value.Id)">Edit</button>*@
+                        @*@Html.ActionLink("Change", "Client_city", "ClientAccount")*@
+                        </a>
+                    </span>
+                </fieldset>
+
+               
+
+                <fieldset>
+                    <label for="">Problem Description</label>
+                    @Html.TextAreaFor(m => m.Problem_description, new { @class = "form-control", @maxlength = "500", @cols = "30", @rows = "10" })
+                    <p>Review story must be at least 30 words. <b>Word Count: 500</b></p>
+                </fieldset>
+
+          
+
+                <input type="submit" value="Submit Review">
+            </form>
+
+
+        </div>
+    </div>
+
+
+    <hr>
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+

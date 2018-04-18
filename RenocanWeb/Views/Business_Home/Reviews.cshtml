@@ -1,10 +1,8 @@
-﻿@model RenocanWeb.Models.RegistrationCompany
-
+﻿@model RenocanWeb.Models.Review
 @*@{
-        ViewBag.Title = "Businessreviews";
+        ViewBag.Title = "reviews";
     }*@
 <body>
-
     <div id="businessdb">
         <div class="content">
             <div class="left">
@@ -23,7 +21,6 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="menu">
                     <ul>
                         <li><a href=""><i class="fa fa-clock-o"></i> @Html.ActionLink("Activity", "Activity", "Business_Home")</a></li>
@@ -40,121 +37,116 @@
                     </ul>
                 </div>
             </div>
-
             <div class="right">
                 <span class="heading"><i class="fa fa-comments"></i> Reviews</span>
-
                 <div class="reviews">
-                    <div class="box">
-                        <div class="img">
-                            <img src="~/Assets/images/user-profile-img.jpg" alt="">
-                        </div>
-                        <div class="detail">
-                            <div class="name">Juanita Houston</div>
-                            <div class="review">
-                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
-                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
-                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
-                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
-                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+
+                    @*<button type="submit" onclick="getReviews()"><i class="fa fa-search"></i></button>*@
+                    <div id="reviewsearchResult"></div>
+
+                
+
+                    @*<div class="box">
+                            <div class="img">
+                                <img src="~/Assets/images/user-profile-img.jpg" alt="">
                             </div>
-                        </div>
-                        <div class="desc">
-                            <span>Basement Renovation review in Vaughan</span>
-                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
-                        </div>
-
-                        <div class="response">
-                            <span><i class="fa fa-reply"></i> Company's Response</span>
-                            <textarea placeholder="Write your response here">Thank you so much, Wishing you and your family all the best in 2017, Ben &amp; Dan</textarea>
-                        </div>
-
-
-                    </div>
-                    <div class="box">
-                        <div class="img">
-                            <img src="images/user-profile-img.jpg" alt="">
-                        </div>
-                        <div class="detail">
-                            <div class="name">Juanita Houston</div>
-                            <div class="review">
-                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
-                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
-                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
-                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
-                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                            <div class="detail">
+                                <div class="name">Juanita Houston</div>
+                                <div class="review">
+                                    <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                    <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                    <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                    <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                    <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="desc">
-                            <span>Basement Renovation review in Vaughan</span>
-                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
-                        </div>
-
-                        <div class="investigate">
-                            <span><i class="fa fa-warning"></i> Request an Investigation</span>
-                            <p>Assure polite his really and others figure though. Day age advantages end sufficient eat expression travelling.</p>
-                            <textarea placeholder="Write your request here">Thank you so much, Wishing you and your family all the best in 2017, Ben &amp; Dan</textarea>
-                        </div>
-
-
-                    </div>
-                    <div class="box">
-                        <div class="img">
-                            <img src="images/user-profile-img.jpg" alt="">
-                        </div>
-                        <div class="detail">
-                            <div class="name">Juanita Houston</div>
-                            <div class="review">
-                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
-                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
-                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
-                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
-                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                            <div class="desc">
+                                <span>Basement Renovation review in Vaughan</span>
+                                <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
                             </div>
-                        </div>
-                        <div class="desc">
-                            <span>Basement Renovation review in Vaughan</span>
-                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
-                        </div>
-
-                        <div class="btns">
-                            <ul>
-                                <li><a href=""><i class="fa fa-reply"></i> Reply to this</a></li>
-                                <li><a href=""><i class="fa fa-warning"></i> Investigate</a></li>
-                            </ul>
-                        </div>
-
-
-                    </div>
-                    <div class="box">
-                        <div class="img">
-                            <img src="images/user-profile-img.jpg" alt="">
-                        </div>
-                        <div class="detail">
-                            <div class="name">Juanita Houston</div>
-                            <div class="review">
-                                <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
-                                <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
-                                <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
-                                <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
-                                <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                            <div class="response">
+                                <span><i class="fa fa-reply"></i> Company's Response</span>
+                                <textarea placeholder="Write your response here">Thank you so much, Wishing you and your family all the best in 2017, Ben &amp; Dan</textarea>
                             </div>
+
                         </div>
-                        <div class="desc">
-                            <span>Basement Renovation review in Vaughan</span>
-                            <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                        <div class="box">
+                            <div class="img">
+                                <img src="images/user-profile-img.jpg" alt="">
+                            </div>
+                            <div class="detail">
+                                <div class="name">Juanita Houston</div>
+                                <div class="review">
+                                    <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                    <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                    <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                    <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                    <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <span>Basement Renovation review in Vaughan</span>
+                                <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                            </div>
+                            <div class="investigate">
+                                <span><i class="fa fa-warning"></i> Request an Investigation</span>
+                                <p>Assure polite his really and others figure though. Day age advantages end sufficient eat expression travelling.</p>
+                                <textarea placeholder="Write your request here">Thank you so much, Wishing you and your family all the best in 2017, Ben &amp; Dan</textarea>
+                            </div>
+
                         </div>
+                        <div class="box">
+                            <div class="img">
+                                <img src="images/user-profile-img.jpg" alt="">
+                            </div>
+                            <div class="detail">
+                                <div class="name">Juanita Houston</div>
+                                <div class="review">
+                                    <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                    <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                    <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                    <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                    <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <span>Basement Renovation review in Vaughan</span>
+                                <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                            </div>
+                            <div class="btns">
+                                <ul>
+                                    <li><a href=""><i class="fa fa-reply"></i> Reply to this</a></li>
+                                    <li><a href=""><i class="fa fa-warning"></i> Investigate</a></li>
+                                </ul>
+                            </div>
 
-                        <div class="btns">
-                            <ul>
-                                <li><a href=""><i class="fa fa-reply"></i> Reply to this</a></li>
-                                <li><a href=""><i class="fa fa-warning"></i> Investigate</a></li>
-                            </ul>
                         </div>
+                        <div class="box">
+                            <div class="img">
+                                <img src="images/user-profile-img.jpg" alt="">
+                            </div>
+                            <div class="detail">
+                                <div class="name">Juanita Houston</div>
+                                <div class="review">
+                                    <div class="stars"><i class="fa fa-star"></i> 9 <span>/10</span></div>
+                                    <div class="tag"><span class="fa fa-compass"></span> Toronto, ON</div>
+                                    <div class="tag"><span class="fa fa-calendar"></span> 22 July 2016</div>
+                                    <div class="tag"><span class="fa fa-dollar"></span> View Job Price</div>
+                                    <div class="badge green"><i class="fa fa-user"></i> Verified</div>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <span>Basement Renovation review in Vaughan</span>
+                                <p>The main reason I ended up using this company is because they were able to come on short notice and the plumber would review work with me and take instructions from me over the phone (other companies insisted I be at home, and would not accept our nanny being there). The work was also well done. That kind of service is hard to find. But it comes at a cost - they are definitely not cheap. Having said that, I will still use them again because I think their service is worth the cost.</p>
+                            </div>
+                            <div class="btns">
+                                <ul>
+                                    <li><a href=""><i class="fa fa-reply"></i> Reply to this</a></li>
+                                    <li><a href=""><i class="fa fa-warning"></i> Investigate</a></li>
+                                </ul>
+                            </div>
 
-
-                    </div>
-
+                        </div>*@
                     <!--
                       <div class="noreviews">
                         <span>No Customer have written a review for your company</span>
@@ -163,12 +155,86 @@
                         <p>Seprate Email Address by comma</p>
                       </div>
                     -->
-
                 </div>
-
             </div>
         </div>
     </div>
 </body>
 
 
+<script type="text/javascript">
+    var UnitLocationId;
+    //$(function () {
+    //    $('#dtScreen').DataTable();
+    //})
+    function Delete(Data) {
+        UnitLocationId = $(Data).attr('value');
+    }
+
+    function getReviews() {
+
+        $.ajax({
+            async: true,
+            type: 'GET',
+            cache: false,
+            dataType: 'html',   //response format
+            contentType: 'application/json; charset=utf-8', //request format
+            crossDomain: true,
+            url: '@Url.Action("_Review_list")',
+            success: function (data) {
+                debugger
+
+                $('#reviewsearchResult').html(data);
+                //$('#modal-AddScreen').modal('show');
+                //$('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+    }
+
+    function addScreen() {
+
+        $.ajax({
+            dataType: "html",
+            async: true,
+            type: 'GET',
+            cache: false,
+            url: '@Url.Action("_Screen")',
+            data: { Id: null },
+            type: 'GET',
+            success: function (data) {
+                $('#AddScreen').html(data);
+                $('#modal-AddScreen').modal('show');
+                $('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
+            },
+        });
+    }
+
+    $(document).ready(function () {
+        getReviews();
+
+
+
+        //$("body").delegate("#btnDelete", "click", function () {
+        //    $.ajax({
+        //        async: true,
+        //        type: 'POST',
+        //        cache: false,
+        //        data: { Id: UnitLocationId },
+        //        url: AdminVD + '/Catalog/DeleteRoleScreen',
+        //        success: function (data) {
+        //            if (data == "success") {
+        //                Helper.Methods.ShowPopUp('Success', 'Screen deleted successfully!');
+        //                setTimeout(function () {
+        //                    location.reload();
+        //                }, 500);
+        //            }
+        //        }
+        //    });
+        //});
+
+
+    });
+</script>

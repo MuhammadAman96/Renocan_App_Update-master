@@ -17,12 +17,12 @@ namespace RenocanWeb.Controllers
     {
         public ActionResult Index()
         {
-            
+
             return View();
 
-            
+
         }
-        
+
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
@@ -51,14 +51,14 @@ namespace RenocanWeb.Controllers
                         else
                         {
 
-                            TempData["msg"] = "<script>alert('Not Found');</script>";
+                          //  TempData["msg"] = "<script>alert('Not Found');</script>";
                         }
 
                     }
                     else
                     {
 
-                        TempData["msg"] = "<script>alert('Not Found');</script>";
+                       // TempData["msg"] = "<script>alert('Not Found');</script>";
                         company_Search.IsError = true;
                         company_Search.ErrorMessage = Constants.ErrorMesssage;
                     }
@@ -71,7 +71,7 @@ namespace RenocanWeb.Controllers
                 return View(company_Search);
             }
         }
-        
+
         public ActionResult Company_search_list()
         {
             return View();
@@ -80,10 +80,10 @@ namespace RenocanWeb.Controllers
 
 
         [HttpGet]
-        public ActionResult getCompanyList(string cat,string loc)
+        public ActionResult getCompanyList(string cat, string loc)
         {
 
-            
+
             return View();
         }
 
@@ -113,7 +113,7 @@ namespace RenocanWeb.Controllers
         public ActionResult _Company_list(string CategoryName, string CityName)
         {
             CompaniesSearchVM objCompanyResponseModel = new CompaniesSearchVM();
-            DataTable datatable = GetCompanyList(CategoryName,CityName);
+            DataTable datatable = GetCompanyList(CategoryName, CityName);
             objCompanyResponseModel.CompanyList = EnumerableExtension.ToList<CompaniesSearch>(datatable);
 
             return PartialView(objCompanyResponseModel);
@@ -148,7 +148,7 @@ namespace RenocanWeb.Controllers
                 return null;
             }
         }
-        
+
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
@@ -183,7 +183,8 @@ namespace RenocanWeb.Controllers
                             Session["CompanyId"] = ds.Tables[0].Rows[0]["CompanyID"];
                             return RedirectToAction("Listing", "Business_Home");
                         }
-                        else if (ds.Tables[0].Rows[0]["Status"].ToString() == "already exist") {
+                        else if (ds.Tables[0].Rows[0]["Status"].ToString() == "already exist")
+                        {
 
                             ModelState.AddModelError("Email", "Email already registered.");
                         }
@@ -203,5 +204,16 @@ namespace RenocanWeb.Controllers
                 return View(registrationCompany);
             }
         }
+
+
+        public ActionResult Get_a_Quote()
+        {
+
+            return View();
+
+        }
+
+ 
+
     }
 }

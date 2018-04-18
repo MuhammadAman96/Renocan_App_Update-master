@@ -11,4 +11,13 @@ namespace RenocanWeb.Models
         public string CategoryName { get; set; }
         
     }
+    public class CategoriesSearchVM : Message
+    {
+        public CategoriesSearchVM()
+        {
+            CategoryList = new List<Service_Category>();
+        }
+        public List<Service_Category> CategoryList { get; set; }
+
+    }
 }

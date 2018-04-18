@@ -1,4 +1,4 @@
-﻿@model RenocanWeb.Models.RegistrationCompany
+﻿@model RenocanWeb.Models.Service_Category
 @*@{
         ViewBag.Title = "Browse_Category";
     }*@
@@ -13,35 +13,37 @@
     <div id="browse">
         <div class="content">
             <span class="title">Browse by Categories</span>
-            <div class="alphabox">
-                <div class="box"><a href="">a</a></div>
-                <div class="box"><a href="">b</a></div>
-                <div class="box"><a href="">c</a></div>
-                <div class="box"><a href="">d</a></div>
-                <div class="box"><a href="">e</a></div>
-                <div class="box"><a href="">f</a></div>
-                <div class="box"><a href="">g</a></div>
-                <div class="box"><a href="">h</a></div>
-                <div class="box"><a href="">i</a></div>
-                <div class="box"><a href="">j</a></div>
-                <div class="box"><a href="">k</a></div>
-                <div class="box"><a href="">l</a></div>
-                <div class="box"><a href="">m</a></div>
-                <div class="box"><a href="">n</a></div>
-                <div class="box"><a href="">o</a></div>
-                <div class="box"><a href="">p</a></div>
-                <div class="box"><a href="">q</a></div>
-                <div class="box"><a href="">r</a></div>
-                <div class="box"><a href="">s</a></div>
-                <div class="box"><a href="">t</a></div>
-                <div class="box"><a href="">u</a></div>
-                <div class="box"><a href="">v</a></div>
-                <div class="box"><a href="">w</a></div>
-                <div class="box"><a href="">x</a></div>
-                <div class="box"><a href="">y</a></div>
-                <div class="box"><a href="">z</a></div>
+            <div class="alphabox" data-group="Companies">
+                <div class="box browselink"><a href="">a</a></div>
+                <div class="box browselink"><a href="">b</a></div>
+                <div class="box browselink"><a href="">c</a></div>
+                <div class="box browselink"><a href="">d</a></div>
+                <div class="box browselink"><a href="">e</a></div>
+                <div class="box browselink"><a href="">f</a></div>
+                <div class="box browselink"><a href="">g</a></div>
+                <div class="box browselink"><a href="">h</a></div>
+                <div class="box browselink"><a href="">i</a></div>
+                <div class="box browselink"><a href="">j</a></div>
+                <div class="box browselink"><a href="">k</a></div>
+                <div class="box browselink"><a href="">l</a></div>
+                <div class="box browselink"><a href="">m</a></div>
+                <div class="box browselink"><a href="">n</a></div>
+                <div class="box browselink"><a href="">o</a></div>
+                <div class="box browselink"><a href="">p</a></div>
+                <div class="box browselink"><a href="">q</a></div>
+                <div class="box browselink"><a href="">r</a></div>
+                <div class="box browselink"><a href="">s</a></div>
+                <div class="box browselink"><a href="">t</a></div>
+                <div class="box browselink"><a href="">u</a></div>
+                <div class="box browselink"><a href="">v</a></div>
+                <div class="box browselink"><a href="">w</a></div>
+                <div class="box browselink"><a href="">x</a></div>
+                <div class="box browselink"><a href="">y</a></div>
+                <div class="box browselink"><a href="">z</a></div>
             </div>
-            <div class="cat">
+
+            <div id="categorysearchResult"></div>
+            @*<div class="cat">
                 <div class="box">
                     <span class="name">a</span>
                     <ul>
@@ -300,9 +302,63 @@
                         <li><a href="">Countertops &amp; Backsplashes</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>*@
         </div>
     </div>
 
 
 </body>
+<script type="text/javascript">
+    
+        function getCategories(letter) {            
+        $.ajax({
+            async: true,
+            type: 'GET',
+            cache: false,
+            data: { CategoryLetter: letter },
+            dataType: 'html',   //response format
+            contentType: 'application/json; charset=utf-8', //request format
+            crossDomain: true,
+            url: '@Url.Action("_Categories")',
+            success: function (data) {
+                debugger
+
+                $('#categorysearchResult').html(data);
+                //$('#modal-AddScreen').modal('show');
+                //$('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+    }
+
+        $('.browselink').click(function () {
+           // $(event).stopPropagation();
+            var letter = $(this).find('a').text();
+            getCategories(letter);
+        });
+
+    $(document).ready(function () {
+        
+        //$("body").delegate("#btnDelete", "click", function () {
+        //    $.ajax({
+        //        async: true,
+        //        type: 'POST',
+        //        cache: false,
+        //        data: { Id: UnitLocationId },
+        //        url: AdminVD + '/Catalog/DeleteRoleScreen',
+        //        success: function (data) {
+        //            if (data == "success") {
+        //                Helper.Methods.ShowPopUp('Success', 'Screen deleted successfully!');
+        //                setTimeout(function () {
+        //                    location.reload();
+        //                }, 500);
+        //            }
+        //        }
+        //    });
+        //});
+
+
+    });
+</script>

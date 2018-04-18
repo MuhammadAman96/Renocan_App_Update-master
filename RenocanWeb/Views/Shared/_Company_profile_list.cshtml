@@ -1,19 +1,18 @@
-﻿@model RenocanWeb.Models.CompaniesSearchVM
+﻿
+@model RenocanWeb.Models.CompaniesSearchVM
 @using RenocanWeb.Common;
 
 @if (Model.CompanyList != null && Model.CompanyList.Count() != 0)
 {
     foreach (var item in Model.CompanyList.Select((value, i) => new { i = i + 1, value }))
     {
-        <div class="box">
+
+        <div class="companybox">
             <div class="favorite">
-                @*<a href=""><i class='@item.value.IsBookmark == true ? "fa fa-bookmark" :"fa fa-bookmark-o"'></i></a>*@
                 <a href=""><i class="@( (item.value.IsBookmark == true ? "fa fa-bookmark-o" : "fa fa-bookmark"))"></i></a>
-                    <!--<a href=""><i class="fa fa-bookmark"></i></a>-->
-                </div>
+                <!--<a href=""><i class="fa fa-bookmark"></i></a>-->
+            </div>
             <div class="img">
-                        
-               
                 <img src=" @(Common.ClientProfileImageVD + item.value.Logo )" width="120" height="120" alt="Not Found">
             </div>
             <div class="detail">
@@ -21,18 +20,16 @@
                 <div class="review">
                     <div class="stars"><i class="fa fa-star"></i> @item.value.Rating <span>/10</span></div>
                     <div class="total"><span>Total Reviews:</span> @item.value.TotalReviews</div>
-                    <div class="badge gold"><i class="fa fa-certificate"></i> Best of @DateTime.Now.Year</div>
-
+                    <div class="badge bronze"><i class="fa fa-certificate"></i> Rising Contractor @DateTime.Now.Year</div>
                 </div>
                 <div class="contact">
                     <ul>
-
                         <li><i class="fa fa-comment" id="getaquote"></i> @Html.ActionLink("Get a Quote", "Get_a_Quote", "Home")</li>
                         <li><a href=""><i class="fa fa-phone"></i>    @item.value.Phone </a></li>
                         <li><a href=""><i class="fa fa-envelope"></i> @item.value.Email</a></li>
                         <li><a href=""><i class="fa fa-globe"></i> @item.value.Website</a></li>
-
                         <li><a href='@Url.Action("Write_a_review", "ClientAccount")'><i class="fa fa-edit"></i> Write a Review</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -43,6 +40,3 @@
 
     }
 }
-
-
-

@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace RenocanWeb.Models
 {
-    public class RegistrationCompanyListing:Message
+    public class Profile_Info:Message
     {
+        
+       public string CompanyName { get; set; }
 
-
-        public Nullable<bool> IsAggrement { get; set; }
-
-
-        public Nullable<bool> Is_Paid { get; set; }
+        public string CategoryName { get; set; }
 
 
         //[Required(ErrorMessage = "Please Enter Website_Add")]
@@ -24,7 +21,7 @@ namespace RenocanWeb.Models
         public string Bussiness_Description { get; set; }
 
 
-         //[Required(ErrorMessage = "Please Enter Profile_Information")]
+        //[Required(ErrorMessage = "Please Enter Profile_Information")]
         public string Profile_Information { get; set; }
 
         //[Required(ErrorMessage = "Please Enter Products")]
@@ -79,6 +76,14 @@ namespace RenocanWeb.Models
         //[Required(ErrorMessage = "Please Enter Warranty")]
         public string Warranty { get; set; }
     }
-  
-}
+    public class CompanieslistingVM : Message
+    {
+        public CompanieslistingVM()
+        {
+            CompanyListing = new List<Profile_Info>();
+        }
+        public List<Profile_Info> CompanyListing { get; set; }
 
+    }
+
+}

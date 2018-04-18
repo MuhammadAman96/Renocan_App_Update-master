@@ -221,7 +221,7 @@ namespace RenocanCommon
 
                     return table;
                 }
-                catch (Exception )
+                catch (Exception ex )
                 {
                     return null;
                 }

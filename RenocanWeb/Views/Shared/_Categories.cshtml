@@ -1,0 +1,32 @@
+﻿
+@model RenocanWeb.Models.CategoriesSearchVM
+@using RenocanWeb.Common;
+
+@if (Model.CategoryList != null && Model.CategoryList.Count() != 0)
+{
+    foreach (var item in Model.CategoryList.Select((value, i) => new { i = i + 1, value }))
+    {
+
+        <div class="cat">
+            <div class="box">
+                <span class="name">@item.value.CategoryName.Substring(0,1)</span>
+                <ul>
+                    <li><a href="">@item.value.CategoryName</a></li>
+                    <li><a href="">Air Duct Cleaning</a></li>
+                    <li><a href="">Air Filtration Systems</a></li>
+                    <li><a href="">Antiques Deals &amp; Retailers</a></li>
+                    <li><a href="">Appliance Repair</a></li>
+                    <li><a href="">Appliance Sales</a></li>
+                    <li><a href="">Aquariums &amp; Aquarium Services</a></li>
+                    <li><a href="">Architects</a></li>
+                    <li><a href="">Art and Print</a></li>
+                    <li><a href="">Art Metal Work</a></li>
+                    <li><a href="">Arts &amp; Entertainment</a></li>
+                    <li><a href="">Asbestos &amp; Lead Removal</a></li>
+                    <li><a href="">Auto Sales &amp; Repair Services</a></li>
+                    <li><a href="">Awnings &amp; Canopies</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+}

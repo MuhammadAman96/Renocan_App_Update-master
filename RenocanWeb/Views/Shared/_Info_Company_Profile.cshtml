@@ -1,0 +1,88 @@
+﻿@model RenocanWeb.Models.CompanieslistingVM
+@using RenocanWeb.Common;
+
+@if (Model.CompanyListing != null && Model.CompanyListing.Count() != 0)
+{
+    foreach (var item in Model.CompanyListing.Select((value, i) => new { i = i + 1, value }))
+    {
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="info">
+                    <h1>@item.value.CompanyName</h1>
+                    <p>
+                        @item.value.Bussiness_Description
+                    </p>
+
+                    <ul>
+                        <li>
+                            <span>Categories</span>
+                            <p><a href="">@item.value.CategoryName</a></p>
+                        </li>
+                        <li>
+                            <span>Products</span>
+                            <p>@item.value.Products</p>
+                        </li>
+                        <li>
+                            <span>Services</span>
+                            <p>@item.value.Services</p>
+                        </li>
+                        <li>
+                            <span>Brands</span>
+                            <p>@item.value.Brands</p>
+                        </li>
+                        <li>
+                            <span>Specialities</span>
+                            <p>@item.value.Specialities</p>
+                        </li>
+                        <li>
+                            <span>Website</span>
+                            <p><a href="">@item.value.Website_Add</a></p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <span>Year Established</span>
+                            <p>@item.value.Year_Established</p>
+                        </li>
+                        <li>
+                            <span>Return Policy</span>
+                            <p>@item.value.Return_Policy_URL</p>
+                        </li>
+                        <li>
+                            <span>Payment Method</span>
+                            <p>@item.value.Payment_Method_URL</p>
+                        </li>
+                        <li>
+                            <span>Licences</span>
+                            <p>@item.value.Licences_URL</p>
+                        </li>
+                        <li>
+                            <span>Insurance</span>
+                            <p>@item.value.Insurance_URL</p>
+                        </li>
+                        <li>
+                            <span>Certificates</span>
+                            <p>@item.value.Certificates_URL</p>
+                        </li>
+                        <li>
+                            <span>Pricing</span>
+                            <p>@item.value.Pricing</p>
+                        </li>
+                        <li>
+                            <span>Contract Based</span>
+                            <p>@item.value.Contract_Based</p>
+                        </li>
+                        <li>
+                            <span>Warranty</span>
+                            <p>@item.value.Warranty</p>
+                        </li>
+                    </ul>
+                    <div align="center">
+                        <p>Company profile information is not moderated by RenoCan. Ask the contractor to verify before hiring.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

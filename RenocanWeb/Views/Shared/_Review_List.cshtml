@@ -1,0 +1,34 @@
+﻿@model RenocanWeb.Models.ReviewListVM
+@using RenocanWeb.Common;
+
+@if (Model.Reviewlist != null && Model.Reviewlist.Count() != 0)
+{
+    foreach (var item in Model.Reviewlist.Select((value, i) => new { i = i + 1, value }))
+    {
+        <div class="box">
+            <div class="img">
+                <img src="~/Assets/images/user-profile-img.jpg" alt="">
+            </div>
+            <div class="detail">
+                <div class="name">@item.value.CompanyName</div>
+                <div class="review">
+                    <div class="stars"><i class="fa fa-star"></i> @item.value.Review_Rating <span>/10</span></div>
+                    <div class="tag"><span class="fa fa-compass"></span> @item.value.PostalCode, ON</div>
+                    <div class="tag"><span class="fa fa-calendar"></span> @item.value.ReviewedDate</div>
+                    <div class="tag"><span class="fa fa-dollar"></span> @item.value.Approximate_Cost</div>
+                    <div class="badge green"><i class="fa fa-user"></i> Verified @item.value.Service_Review_Status_ID</div>
+                </div>
+            </div>
+            <div class="desc">
+                <span>@item.value.Review_Title</span>
+                <p>@item.value.Review_Details</p>
+            </div>
+            <div class="response">
+                <span><i class="fa fa-reply"></i> Company's Response</span>
+                @*@Html.TextAreaFor(Mod,new { @class = "form-control", @maxlength = "500", @cols = "30", @rows = "10" })*@
+                <textarea placeholder="Write your response here">Thank you so much, Wishing you and your family all the best in 2017, Ben &amp; Dan </textarea>
+            </div>
+
+        </div>
+    }
+}

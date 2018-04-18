@@ -1,0 +1,42 @@
+﻿@model RenocanWeb.Models.Client_ActivityVM
+@using RenocanWeb.Common;
+
+@if (Model.ActivityList != null && Model.ActivityList.Count() != 0)
+{
+    foreach (var item in Model.ActivityList.Select((value, i) => new { i = i + 1, value }))
+    {
+
+        
+            <ul class="timeline">
+                @if (Model.ActivityList.Count() % 2 == 0)
+                {
+                <!-- Item 1 -->
+                <li>
+                    <div class="direction-r">
+                        <div class="flag-wrapper">
+                            <span class="flag">Review</span>
+                            <span class="time-wrapper"><span class="time">@item.value.ReviewedDate</span></span>
+                        </div>
+                        <div class="desc">Your Review <a href="">@item.value.Review_Details</a> <a href="">(@item.value.Review_ID)</a> for <a href="">@item.value.CompanyName</a> has been @item.value.Service_Review_Status.</div>
+                    </div>
+                </li>
+                }
+              else
+                {
+                <!-- Item 2 -->
+                <li>
+                    <div class="direction-l">
+                        <div class="flag-wrapper">
+                            <span class="flag">Review</span>
+                            <span class="time-wrapper"><span class="time">@item.value.ReviewedDate</span></span>
+                        </div>
+                        <div class="desc">@item.value.Review_Details <a href="">(@item.value.Review_ID)</a> for <a href="">@item.value.CompanyName</a> has been @item.value.Service_Review_Status.</div>
+                    </div>
+                </li>
+                }
+
+            </ul>
+      
+
+    }
+}

@@ -10,14 +10,34 @@ namespace RenocanWeb.Models
     public class Company_Search:Message
     {
         [AllowHtml]
-        [Required]
+    
 
         public string CompanyName { get; set; }
 
 
         [AllowHtml]
-        [Required]
-        [RegularExpression(@"^([a-zA-Z\s'-]{3,50})$", ErrorMessage = "Please Enter Valid Name")]
+       
+        [RegularExpression(@"^([a-zA-Z\s'-]{3,50})$", ErrorMessage = "Type Valid Name")]
         public string Location { get; set; }
     }
+
+    public class Company : Message
+    {
+        public int CompanyId { get; set; }
+
+        public string CompanyName { get; set; }
+        
+    }
+
+    public class LocationS : Message
+    {
+        public int LocationId { get; set; }
+
+        public string LocationName { get; set; }
+
+    }
+
+
+
+
 }

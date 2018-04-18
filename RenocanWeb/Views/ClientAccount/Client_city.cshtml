@@ -1,142 +1,51 @@
-﻿@model RenocanWeb.Models.Client_Signup
-@*@{
-        ViewBag.Title = "ClientCity";
-    }*@
+﻿
+@model RenocanWeb.Models.Locations
+@{
+    ViewBag.Title = "Client_City";
 
+}
+@using RenocanWeb.Common;
 
-<body>
+<div class="overlay"></div>
 
-    <div id="cities">
-        <div class="content">
-            <span>Select City:</span>
-            <div class="row">
+<div id="cities">
+    <div class="content">
+        <span>Select City:</span>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                @if (Model.locationlist != null && Model.locationlist.Count() != 0)
+                {
+                    foreach (var item in Model.locationlist.Select((value, i) => new { i = i + 1, value }))
+                    {
 
-                <div id="txtCityName">
-
-                    <div id="citysearchResult"></div>
-
-                </div>
-                @*<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                         <ul>
-                            <li><a href="">London</a></li>
-                            <li><a href="">Markham</a></li>
-                            <li><a href="">Mississauga</a></li>
-                            <li><a href="">Niagara Falls</a></li>
-                            <li><a href="">Norfolk County</a></li>
-                            <li><a href="">North Bay</a></li>
-                            <li><a href="">Orillia</a></li>
-                            <li><a href="">Oshawa</a></li>
-                            <li><a href="">Ottawa</a></li>
-                            <li><a href="">Owen Sound</a></li>
-                            <li><a href="">Pembroke</a></li>
-                            <li><a href="">Peterborough</a></li>
-                            <li><a href="">Pickering</a></li>
-                            <li><a href="">Port Colborne</a></li>
-                            <li><a href="">Prince Edward County</a></li>
-                            <li><a href="">Quinte West</a></li>
-                            <li><a href="">Sarnia</a></li>
-                            <li><a href="">Sault Ste. Marie</a></li>
-                            <li><a href="">St. Catharines</a></li>
-                            <li><a href="">St. Thomas</a></li>
+                            <li><a href="">@item.value.Location_Name </a> <i class="fa fa-map-marker"></i></li>
+                          
                         </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                        <ul>
-                            <li><a href="">Stratford</a></li>
-                            <li><a href="">Temiskaming Shores</a></li>
-                            <li><a href="">Thorold</a></li>
-                            <li><a href="">Thunder Bay</a></li>
-                            <li><a href="">Timmins</a></li>
-                            <li><a href="">Toronto</a></li>
-                            <li><a href="">Vaughan</a></li>
-                            <li><a href="">Waterloo</a></li>
-                            <li><a href="">Welland</a></li>
-                            <li><a href="">Windsor</a></li>
-                            <li><a href="">Woodstock</a></li>
-                        </ul>
-                    </div>*@
+                    }
+                }
             </div>
+
+            @*<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <ul>
+                        <li><a href="">Stratford</a></li>
+                        <li><a href="">Temiskaming Shores</a></li>
+                        <li><a href="">Thorold</a></li>
+                        <li><a href="">Thunder Bay</a></li>
+                        <li><a href="">Timmins</a></li>
+                        <li><a href="">Toronto</a></li>
+                        <li><a href="">Vaughan</a></li>
+                        <li><a href="">Waterloo</a></li>
+                        <li><a href="">Welland</a></li>
+                        <li><a href="">Windsor</a></li>
+                        <li><a href="">Woodstock</a></li>
+                    </ul>
+                </div>*@
+
         </div>
     </div>
+</div>
 
 
-    <hr>
 
 
-</body>
-<script type="text/javascript">
-    var UnitLocationId;
-    //$(function () {
-    //    $('#dtScreen').DataTable();
-    //})
-    function Delete(Data) {
-        UnitLocationId = $(Data).attr('value');
-    }
-
-    function getCities() {
-            var CityName = $("#txtCityName").val();
-
-        $.ajax({
-            async: true,
-            type: 'GET',
-            cache: false,
-            data: { CityName: CityName  },
-            dataType: 'html',   //response format
-            contentType: 'application/json; charset=utf-8', //request format
-            crossDomain: true,
-            url: '@Url.Action("_City_List")',
-            success: function (data) {
-                debugger
-
-                $('#citysearchResult').html(data);
-                //$('#modal-AddScreen').modal('show');
-                //$('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
-            },
-            error: function (request, status, error) {
-                alert(request.responseText);
-            }
-        });
-    }
-
-    function addScreen() {
-
-        $.ajax({
-            dataType: "html",
-            async: true,
-            type: 'GET',
-            cache: false,
-            url: '@Url.Action("_Screen")',
-            data: { Id: null },
-            type: 'GET',
-            success: function (data) {
-                $('#AddScreen').html(data);
-                $('#modal-AddScreen').modal('show');
-                $('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
-            },
-        });
-    }
-
-    $(document).ready(function () {
-        $('#citysearchResult').getCities();
-
-        //$("body").delegate("#btnDelete", "click", function () {
-        //    $.ajax({
-        //        async: true,
-        //        type: 'POST',
-        //        cache: false,
-        //        data: { Id: UnitLocationId },
-        //        url: AdminVD + '/Catalog/DeleteRoleScreen',
-        //        success: function (data) {
-        //            if (data == "success") {
-        //                Helper.Methods.ShowPopUp('Success', 'Screen deleted successfully!');
-        //                setTimeout(function () {
-        //                    location.reload();
-        //                }, 500);
-        //            }
-        //        }
-        //    });
-        //});
-
-
-    });
-</script>

@@ -1,10 +1,13 @@
-﻿using RenocanCommon;
+﻿using Newtonsoft.Json;
+using RenocanCommon;
 using RenocanWeb.Common;
 using RenocanWeb.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -19,12 +22,8 @@ namespace RenocanWeb.Controllers
             return View();
         }
 
-        public ActionResult Activity()
-        {
-            return View();
-        }
-
-
+      
+        //
         public ActionResult Listing()
         {
             if (Session["CompanyId"] != null)
@@ -34,8 +33,6 @@ namespace RenocanWeb.Controllers
             return RedirectToAction("Business_Login", "Business_Home");
 
         }
-
-
 
         [HttpPost]
         [ValidateInput(false)]
@@ -82,45 +79,86 @@ namespace RenocanWeb.Controllers
             return View(registrationCompany);
         }
 
-
-
-
-
+        
+        //
         public ActionResult Media()
         {
             return View();
         }
+        
+        //
         public ActionResult Reviews()
+       {
+            if (Session["CompanyId"] != null)
+            {
+                
+            
+                return View();
+            }
+            
+            return RedirectToAction("Business_login", "Business_Home");
+        }
+
+        [HttpGet]
+        public ActionResult getReviewList()
         {
+
+
             return View();
         }
+
+        public DataTable GetReviewList()
+        {
+            try
+            {
+               
+                    SqlParameter[] parameters =
+
+                    {
+                    new SqlParameter("@companyId", SqlDbType.Int) { Value =Convert.ToInt32(Session["CompanyId"]) }
+                    };
+                
+                    
+              return DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Select_Reviews", parameters);
+         
+            }
+            catch (Exception ex)
+            {
+                //LogError(ex);
+                return null;
+            }
+        }
+
+        public ActionResult _Review_list()
+        {
+            ReviewListVM objCompanyResponseModel = new ReviewListVM();
+            DataTable datatable = GetReviewList();
+            objCompanyResponseModel.Reviewlist = EnumerableExtension.ToList<ReviewList>(datatable);
+
+            return PartialView(objCompanyResponseModel);
+        }
+
+        //
         public ActionResult Scoreboard()
         {
             return View();
 
         }
+        //
         public ActionResult toolkit()
         {
             return View();
 
         }
 
-
+        //
         public ActionResult Business_forgot_password()
         {
             return View();
 
         }
 
-        public ActionResult Browse_category()
-        {
-            return View();
-        }
-
-
-
-
-
+          //      
         public ActionResult Business_login()
         {
 
@@ -151,7 +189,7 @@ namespace RenocanWeb.Controllers
                         if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["Company_ID"].ToString()))
                         {
                             Session["CompanyId"] = ds.Tables[0].Rows[0]["Company_ID"];
-                            return RedirectToAction("Listing", "Business_Home");
+                            return RedirectToAction("Activity", "Business_Home");
                         }
                         else 
                         {
@@ -175,8 +213,8 @@ namespace RenocanWeb.Controllers
                 return View(login);
             }
         }
-
-
+        
+            //           
         public ActionResult LogOut()
         {
             //  FormsAuthentication.SignOut();
@@ -184,26 +222,77 @@ namespace RenocanWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-
-
+              //  
         public ActionResult Business_city()
         {
             return View();
         }
-        public ActionResult Company_profile()
+      //
+             
+        public ActionResult Business_new_password_()
         {
             return View();
         }
 
+        //
+        public ActionResult Client_job_request()
+        {
+            return View();
+
+        }
+
+        //
+        public ActionResult Client_job_request_detail()
+        {
+            return View();
+        }
+
+        // 
+        public ActionResult Browse_category()
+        {
+            return View();
+        }
+     
+        [HttpGet]
+        public ActionResult getCategoryList(string cat )
+        {
+         return View();
+        }
+
+        public DataTable GetCategoryList(string cat)
+        {
+            try
+            {
+                SqlParameter[] parameters =
+               {
+                new SqlParameter("@category_Name",SqlDbType.VarChar){Value= cat }
+               };
+
+                return DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Select_CategoryList", parameters);
+            }
+            catch (Exception ex)
+            {
+                //LogError(ex);
+                return null;
+            }
+        }
+
+        public ActionResult _Categories(string CategoryLetter)
+        {
+            CategoriesSearchVM objCompanyResponseModel = new CategoriesSearchVM();
+            DataTable datatable = GetCategoryList(CategoryLetter);
+            objCompanyResponseModel.CategoryList = EnumerableExtension.ToList<Service_Category>(datatable);
+
+            return PartialView(objCompanyResponseModel);
+        }
+
+        //comapny search
         public ActionResult Company_search()
 
         {
             return View();
         }
 
-
-        //comapny search
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
@@ -226,7 +315,7 @@ namespace RenocanWeb.Controllers
                     {
                         if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["CompanyName"].ToString()))
                         {
-                            
+
                             return RedirectToAction("Company_search_list", "Home");
                         }
                         else
@@ -253,25 +342,160 @@ namespace RenocanWeb.Controllers
             }
         }
 
-
-
-
-
-
-
-
-
-
-        public ActionResult Business_new_password_()
+        public ActionResult Company_search_list()
         {
             return View();
         }
 
+    
+        [HttpGet]
+        public ActionResult getCompanyList()
+        {
+
+
+            return View();
+        }
+
+        public DataTable GetCompanyList()
+        {
+            try
+            {
+                SqlParameter[] parameters =
+               {
+                new SqlParameter("@company_Id",SqlDbType.VarChar){Value =Convert.ToInt32(Session["CompanyId"]) },
+
+
+               };
+
+                return DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Select_CompanyList", parameters);
+            }
+            catch (Exception ex)
+            {
+                //LogError(ex);
+                return null;
+            }
+        }
+                
+        public ActionResult _Company_list()
+        {
+            CompaniesSearchVM objCompanyResponseModel = new CompaniesSearchVM();
+            DataTable datatable = GetCompanyList();
+            objCompanyResponseModel.CompanyList = EnumerableExtension.ToList<CompaniesSearch>(datatable);
+
+            return PartialView(objCompanyResponseModel);
+        }
 
 
 
+        //
+
+        public ActionResult Company_profile()
+        {
+            return View();
+        }
+
+        public ActionResult _Review_Company_Profile_list()
+        {
+            ReviewListVM objCompanyResponseModel = new ReviewListVM();
+            DataTable datatable = GetReviewList();
+            objCompanyResponseModel.Reviewlist = EnumerableExtension.ToList<ReviewList>(datatable);
+
+            return PartialView(objCompanyResponseModel);
+        }
+
+        public ActionResult _Company_profile_list()
+        {
+            CompaniesSearchVM objCompanyResponseModel = new CompaniesSearchVM();
+            DataTable datatable = GetCompanyList();
+            objCompanyResponseModel.CompanyList = EnumerableExtension.ToList<CompaniesSearch>(datatable);
+
+            return PartialView(objCompanyResponseModel);
+        }
+
+        
+        public ActionResult getProfile_Info( )
+        {
 
 
+            return View();
+        }
+
+
+        public DataTable GetProfile_Info( )
+        {
+            try
+            {
+                SqlParameter[] parameters =
+               {
+                new SqlParameter("@companyId",SqlDbType.VarChar){Value=Convert.ToInt32(Session["CompanyId"])}
+
+               };
+
+                return DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Select_CompanyInfo", parameters);
+            }
+            catch (Exception ex)
+            {
+                //LogError(ex);
+                return null;
+            }
+        }
+
+
+
+        public ActionResult _Info_Company_Profile()
+        {
+            CompanieslistingVM objCompanyResponseModel = new CompanieslistingVM();
+            DataTable datatable = GetProfile_Info();
+            objCompanyResponseModel.CompanyListing = EnumerableExtension.ToList<Profile_Info>(datatable);
+            return PartialView(objCompanyResponseModel);
+
+        }
+        
+        //
+
+        public ActionResult Activity()
+        {
+            if (Session["CompanyId"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Business_login", "Business_Home");
+        }
+        [HttpGet]
+        public ActionResult getCompanyActivityList()
+        {
+
+            return View();
+        }
+        public DataTable GetCompanyActivityList()
+        {
+            try
+            {
+                SqlParameter[] parameters =
+               {
+                  new SqlParameter("@companyId", SqlDbType.Int) { Value =Convert.ToInt32(Session["CompanyId"])}
+               };
+
+                return DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Select_CompanyActivity", parameters);
+            }
+            catch (Exception ex)
+            {
+                //LogError(ex);
+                return null;
+            }
+        }
+
+
+
+        public ActionResult _CompanyActivityList()
+        {
+            Company_ActivityVM objCompanyResponseModel = new Company_ActivityVM();
+            DataTable datatable = GetCompanyActivityList();
+            objCompanyResponseModel.ComActivityList = EnumerableExtension.ToList<Company_Activity>(datatable);
+            return PartialView(objCompanyResponseModel);
+        }
+
+        //
 
     }
 }

@@ -13,6 +13,6 @@ namespace RenocanWeb.Models
         public Nullable<int> User_ID { get; set; }
         public Nullable<int> Image_Type_ID { get; set; }
         public Nullable<int> User_Typeid { get; set; }
-  
+        public HttpPostedFileWrapper ImageFile { get; set; }
     }
 }

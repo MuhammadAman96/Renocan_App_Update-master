@@ -4,102 +4,162 @@
     }*@
 
 <body>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAKis5lrFInJgvJseC22F2-UyGc_VU_S74"></script>
+    @*<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAKis5lrFInJgvJseC22F2-UyGc_VU_S74&sensor=false"></script>*@
 
+    @*<script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKis5lrFInJgvJseC22F2-UyGc_VU_S74&callback=initMap">
+        </script>*@
 
     <div id="writeareview">
         <div class="content">
             <form method="post" class="search">
-                    @Html.AntiForgeryToken()
-                    <h1>Review Unilever Pvt Ltd.</h1>
+                @Html.AntiForgeryToken()
+                <h1>Review Unilever Pvt Ltd.</h1>
 
-                    <div class="rating">
-                        <div id="stars" class="starrr"></div>
-                        <p>You gave a rating of <span id="count">@Model.Review_Rating</span> star(s)</p>
-                    </div>
-
-                    <fieldset>
-                        <label for="">Review Title</label>
-
-                        @Html.TextBoxFor(m => m.Review_Title, new { placeholder = "Project, product, or service, e.g. Kitchen Renovation", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Review_Title, "", new { @class = "text-red" })
-
-                    </fieldset>
-
-                    <fieldset>
-                        <span>
-                            Work Site Location: <b>Brampton</b> <a href="">
-                                @Html.ActionLink("Change", "Client_city", "ClientAccount")
-                            </a>
-                        </span>
-                    </fieldset>
-
-                    <fieldset>
-                        <label for="">Approximate Cost</label>
-                        @Html.TextBoxFor(m => m.Approximate_Cost, new { placeholder = "$", @maxlength = "50" })
-                        @Html.ValidationMessageFor(m => m.Approximate_Cost, "", new { @class = "text-red" })
-                    </fieldset>
-
-                    <fieldset>
-                        <label for="">Review Details</label>
-                        @Html.TextAreaFor(m => m.Review_Details, new { @class = "form-control", @maxlength = "500", @cols = "30", @rows = "10" })
-                        <p>Review story must be at least 30 words. <b>Word Count: 500</b></p>
-                    </fieldset>
-
-                    <fieldset>
-                        <div class="user">
-                            <div class="img">
-                                <img src="~/Assets/images/user-profile-img.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <span>Samuel Jackson from <b>Brampton</b></span>
-                                @Html.CheckBoxFor(m => m.IsAnonymous)
-                                Post Review anonymously.
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <input type="submit" value="Submit Review">
-                </form>
-
-                <div class="box">
-                    <span>Review Requirements</span>
-                    <ul>
-                        <li>Email address and postal/zip code are required for verification.</li>
-                        <li>Your review must be legal and non-infringing.</li>
-                        <li>Reviews must be written in English and contain only family-friendly content.</li>
-                        <li>No commercial content (URLs, email addresses, code, etc).</li>
-                        <li>Employees and family members of employees cannot review their own company.</li>
-                        <li>Reviews cannot contain the full names of employees.</li>
-                        <li>Reviews cannot be written by or about minors (under the age of 18).</li>
-                        <li>Reviews must be based on a financial transaction between a homeowner and company.</li>
-                        <li>Review content is permitted to the work or service performed by the company.</li>
-                        <li>Reviews cannot be written in response to other reviews.</li>
-                    </ul>
+                <div class="rating">
+                    <div id="stars" class="starrr"></div>
+                    <p>You gave a rating of <span id="count">@Model.Review_Rating</span> star(s)</p>
+                    @Html.HiddenFor(m=>m.Review_Rating,new { id= "hdnCount"})
                 </div>
 
-</div>
-</div>
+                <fieldset>
+                    <label for="">Review Title</label>
+
+                    @Html.TextBoxFor(m => m.Review_Title, new { placeholder = "Project, product, or service, e.g. Kitchen Renovation", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Review_Title, "", new { @class = "text-red" })
+
+                </fieldset>
+
+                <fieldset>
+                    <span>
+                        Work Site Location: <b id="CityName">@Model.Location</b> <a href="javascript:" id="changeCity">
+                            change
+                        </a>
+                    </span>
+                </fieldset>
+                <fieldset style="display:none;">
+                    <input id="PostalCode" type="text" maxlength="20" name="PostalCode" value="@Model.PostalCode" >
+                    <input id="hdnPostalCode" type="hidden" name="hdnPostalCode" value="@Model.PostalCode"/>
+                </fieldset>
+
+                <fieldset>
+                    <label for="">Approximate Cost</label>
+                    @Html.TextBoxFor(m => m.Approximate_Cost, new { placeholder = "$", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.Approximate_Cost, "", new { @class = "text-red" })
+                </fieldset>
+
+                <fieldset>
+                    <label for="">Review Details</label>
+                    @Html.TextAreaFor(m => m.Review_Details, new {id="ReviewDetails", @class = "form-control", @maxlength = "500", @cols = "30", @rows = "10" })
+                    <p>Review story must be at least 30 words. <b>Word Count: <b id="ReviewWordcount">0</b></b></p>
+                </fieldset>
+
+                <fieldset>
+                    <div class="user">
+                        <div class="img">
+                            <img src="~/Assets/images/user-profile-img.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <span>@Model.ReviewedBy from <b>@Model.Location</b></span>
+                             @Html.CheckBoxFor(m => m.IsAnonymous)
+                            Post Review anonymously.
+                        </div>
+                    </div>
+                </fieldset>
+
+                <input type="submit" value="Submit Review">
+            </form>
+
+            <div class="box">
+                <span>Review Requirements</span>
+                <ul>
+                    <li>Email address and postal/zip code are required for verification.</li>
+                    <li>Your review must be legal and non-infringing.</li>
+                    <li>Reviews must be written in English and contain only family-friendly content.</li>
+                    <li>No commercial content (URLs, email addresses, code, etc).</li>
+                    <li>Employees and family members of employees cannot review their own company.</li>
+                    <li>Reviews cannot contain the full names of employees.</li>
+                    <li>Reviews cannot be written by or about minors (under the age of 18).</li>
+                    <li>Reviews must be based on a financial transaction between a homeowner and company.</li>
+                    <li>Review content is permitted to the work or service performed by the company.</li>
+                    <li>Reviews cannot be written in response to other reviews.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
 
 
-<hr>
-
-
-
-
-
-
+    <hr>
 
 </body>
 
 <script>
-    $(document).ready(function () {
+    $(function () {
+        var geocoder = new google.maps.Geocoder();
+
+        $("#PostalCode").autocomplete({
+            //This bit uses the geocoder to fetch address values
+            source: function (request, response) {
+                geocoder.geocode({ 'address': request.term },
+
+                    function (results, status) {
+                        response($.map(results, function (item) {
+                            var postalCode = "";
+                            if (item.address_components) {
+                                for (var i in item.address_components) {
+                                    if (typeof (item.address_components[i]) === "object" && item.address_components[i].types[0] == "postal_code") {
+                                        postalCode = item.address_components[i].long_name;
+                                    }
+                                }
+                            }
+                            //console.log("postal_code=" + item.address_components[2].long_name);
+                            $('#CityName').text(item.address_components[2].long_name);
+                            $('#hdnPostalCode').val(request.term);
+                           // return {
+                                //label: item.formatted_address,
+                                //value: item.formatted_address,
+                                //latitude: item.geometry.location.lat(),
+                                //longitude: item.geometry.location.lng(),
+                                //streetNo: item.address_components[0].long_name,
+                                //streetName: item.address_components[1].long_name,
+                                //town: item.address_components[2].long_name,
+                                //province: item.address_components[4].long_name,
+                                //postal_code: postalCode
+                           // }
+                        }));
+                    })
+            }
+        });
+
+        $("#PostalCode").focusout(function () {
+            $(this).parents('fieldset').hide();
+            $('#CityName').parents('fieldset').fadeIn(200);
+
+        })
 
         $('#stars').on('starrr:change', function (e, value) {
             $('#count').html(value);
+            $('#hdnCount').val(value);
         });
 
         $('#stars-existing').on('starrr:change', function (e, value) {
             $('#count-existing').html(value);
         });
-    });
+
+        $('#changeCity').click(function () {
+            $(this).parents('fieldset').hide();
+            $('#PostalCode').parents('fieldset').fadeIn(200);
+
+        });
+
+        $('#ReviewDetails').keypress(function () {
+            var count = $('#ReviewDetails').val().split(' ').length;
+            $('#ReviewWordcount').text(count);
+        });
+
+        $('#ReviewWordcount').text($('#ReviewDetails').val().split(' ').length);        
+
+    })
 </script>

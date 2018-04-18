@@ -1,0 +1,29 @@
+﻿@model RenocanWeb.Models.Company_ActivityVM
+@using RenocanWeb.Common;
+
+@if (Model.ComActivityList != null && Model.ComActivityList.Count() != 0)
+{
+    foreach (var item in Model.ComActivityList.Select((value, i) => new { i = i + 1, value }))
+    {
+
+
+        <ul class="timeline">
+           
+                <!-- Item 1 -->
+                <li>
+                    <div class="direction-r">
+                        <div class="flag-wrapper">
+                            <span class="flag">Review</span>
+                            <span class="time-wrapper"><span class="time">@item.value.ReviewedDate</span></span>
+                        </div>
+                        <div class="desc">Review <a href="">@item.value.Review_Details</a> <a href="">(@item.value.Review_ID)</a> by <a href="">@item.value.FullName</a> System marked it as   <a href="">@item.value.Service_Review_Status</a> and informed user.</div>
+                    </div>
+                </li>
+            
+
+        </ul>
+
+
+
+    }
+}

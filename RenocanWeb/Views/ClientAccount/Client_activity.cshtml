@@ -1,11 +1,9 @@
 ﻿
-@model RenocanWeb.Models.RegistrationCompany
-
+@model RenocanWeb.Models.Client_Signup
 @*@{
         ViewBag.Title = "Client_activity";
     }*@
 <body>
-
     <div id="dashboard">
         <div class="content">
             <div class="left">
@@ -25,7 +23,6 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="menu">
                     <ul>
                         <li><a href=""><i class="fa fa-clock-o"></i> My Activity</a></li>
@@ -35,15 +32,20 @@
 
 
                         <li><i class="fa fa-user"></i>@Html.ActionLink("Account Information", "Client_Information", "ClientAccount")</li>
-                         
+
                         <li><a href='@Url.Action("LogOut", "ClientAccount")'><i class="fa fa-sign-out"></i> Log Out</a></li>
 
 
                     </ul>
                 </div>
             </div>
-
             <div class="right">
+                <span class="heading"><i class="fa fa-clock-o"></i> My Activity</span>
+
+                <div id="activitysearchResult"> </div>
+            </div>
+
+                @*<div class="right">
                 <span class="heading"><i class="fa fa-clock-o"></i> My Activity</span>
 
                 <ul class="timeline">
@@ -83,8 +85,82 @@
 
                 </ul>
 
-            </div>
-
+            </div>*@
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    var UnitLocationId;
+    //$(function () {
+    //    $('#dtScreen').DataTable();
+    //})
+    function Delete(Data) {
+        UnitLocationId = $(Data).attr('value');
+    }
+
+    function getActivities() {
+
+
+        $.ajax({
+            async: true,
+            type: 'GET',
+            cache: false,
+            dataType: 'html',   //response format
+            contentType: 'application/json; charset=utf-8', //request format
+            crossDomain: true,
+            url: '@Url.Action("_Activity_list")',
+            success: function (data) {
+                debugger
+
+                $('#activitysearchResult').html(data);
+                //$('#modal-AddScreen').modal('show');
+                //$('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+    }
+
+    function addScreen() {
+
+        $.ajax({
+            dataType: "html",
+            async: true,
+            type: 'GET',
+            cache: false,
+            url: '@Url.Action("_Screen")',
+            data: { Id: null },
+            type: 'GET',
+            success: function (data) {
+                $('#AddScreen').html(data);
+                $('#modal-AddScreen').modal('show');
+                $('.modal-body').height($('.col-md-12.AddScreen').height() + 10);
+            },
+        });
+    }
+
+    $(document).ready(function () {
+
+        getActivities();
+        //$("body").delegate("#btnDelete", "click", function () {
+        //    $.ajax({
+        //        async: true,
+        //        type: 'POST',
+        //        cache: false,
+        //        data: { Id: UnitLocationId },
+        //        url: AdminVD + '/Catalog/DeleteRoleScreen',
+        //        success: function (data) {
+        //            if (data == "success") {
+        //                Helper.Methods.ShowPopUp('Success', 'Screen deleted successfully!');
+        //                setTimeout(function () {
+        //                    location.reload();
+        //                }, 500);
+        //            }
+        //        }
+        //    });
+        //});
+
+
+    });
+</script>

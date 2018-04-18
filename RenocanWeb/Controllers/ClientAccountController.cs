@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -91,7 +92,7 @@ namespace RenocanWeb.Controllers
         }
 
 
-     
+
         public ActionResult Client_bookmarks()
         {
             return View();
@@ -99,32 +100,13 @@ namespace RenocanWeb.Controllers
         }
 
 
-        public ActionResult Client_activity()
-        {
-            return View();
-
-        }
+       
 
         public ActionResult Client_review()
         {
             return View();
 
         }
-
-
-        public ActionResult Client_forgot_password()
-        {
-            return View();
-
-        }
-
-
-        public ActionResult Client_job_request()
-        {
-            return View();
-
-        }
-
 
 
 
@@ -135,6 +117,8 @@ namespace RenocanWeb.Controllers
             if (Session["ClientId"] != null)
             {
                 Review r = new Review();
+                r.PostalCode = "M1S 1P9";
+                r.Location = "Toronto";
                 r.Review_Rating = 0;
                 return View(r);
             }
@@ -146,7 +130,7 @@ namespace RenocanWeb.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Write_a_review(Review review)
+        public ActionResult Write_a_review(Review review,string hdnPostalCode)
         {
             if (ModelState.IsValid)
             {
@@ -154,11 +138,14 @@ namespace RenocanWeb.Controllers
                 SqlParameter[] parameters =
 
                 {
-                    new SqlParameter("@Client_ID", SqlDbType.Int) { Value =Convert.ToInt32(Session["ClientId"])},
+                    new SqlParameter("@Company_ID", SqlDbType.Int) { Value =2},
                     //new SqlParameter("@IsAggrement", SqlDbType.Bit) { Value = registrationCompany.IsAggrement},
                     //new SqlParameter("@Is_Paid", SqlDbType.Bit) { Value = registrationCompany.Is_Paid},
-                      new SqlParameter("@Service_Request_ID",SqlDbType.Int){Value=review.Service_Request_ID},
+                      new SqlParameter("@ReviewUsertype",SqlDbType.Int){Value=3},
+
                     new SqlParameter("@ReviewedBy",SqlDbType.NVarChar){Value=review.ReviewedBy},
+                    new SqlParameter("@PostalCode",SqlDbType.NVarChar){Value=review.PostalCode},
+                    new SqlParameter("@ReviewerName",SqlDbType.NVarChar){Value=review.ReviewedBy},
                       new SqlParameter("@Service_Review_Status_ID", SqlDbType.Int) { Value = review.Service_Review_Status_ID },
                        new SqlParameter("@Review_Title",SqlDbType.NVarChar){Value=review.Review_Title},
                       new SqlParameter("@Approximate_Cost",SqlDbType.NVarChar){Value= review.Approximate_Cost},
@@ -166,11 +153,11 @@ namespace RenocanWeb.Controllers
                       new SqlParameter("@Review_Details",SqlDbType.NVarChar){Value=review.Review_Details},
                       new SqlParameter("@IsAnonymous",SqlDbType.Bit){Value=review.IsAnonymous},
                     new SqlParameter("@UserIP",SqlDbType.NVarChar){Value= Constants.GetUserIP()}
-                      
+
 
                          };
 
-                if (DataAccess.ExecuteNonQuery(AppConfigurations.ConnectionString, "Insert_Update_WriteAReview", parameters))
+                if (DataAccess.ExecuteNonQuery(AppConfigurations.ConnectionString, "Insert_Update_VisitorReview", parameters))
                     return RedirectToAction("Client_activity", "ClientAccount");
                 else
                 {
@@ -249,14 +236,12 @@ namespace RenocanWeb.Controllers
 
         public ActionResult Client_city()
         {
+          
             return View();
+
         }
 
 
-        public ActionResult Client_job_request_detail()
-        {
-            return View();
-        }
 
 
         public ActionResult Client_new_password_()
@@ -366,6 +351,79 @@ namespace RenocanWeb.Controllers
         }
 
 
+
+
+        public ActionResult Client_forgot_password()
+        {
+            return View();
+
+        }
+
+
+        public ActionResult Client_activity()
+        {
+            if (Session["ClientId"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Client_login", "ClientAccount");
+        }
+
+
+        [HttpGet]
+        public ActionResult getClientActivityList()
+        {
+
+            return View();
+        }
+        public DataTable GetClientActivityList()
+        {
+            try
+            {
+                SqlParameter[] parameters =
+               {
+                  new SqlParameter("@clientId", SqlDbType.Int) { Value =Convert.ToInt32(Session["ClientId"])}
+               };
+
+                return DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Select_ClientActivity", parameters);
+            }
+            catch (Exception ex)
+            {
+                //LogError(ex);
+                return null;
+            }
+        }
+
+
+
+        public ActionResult _Activity_list()
+        {
+            Client_ActivityVM objCompanyResponseModel = new Client_ActivityVM();
+            DataTable datatable = GetClientActivityList();
+            objCompanyResponseModel.ActivityList = EnumerableExtension.ToList<Client_Activity>(datatable);
+            return PartialView(objCompanyResponseModel);
+        }
+
+        public JsonResult ImageUpload(Image_Gallary model)
+        {
+
+            var file = model.ImageFile;
+
+            if (file != null)
+            {
+
+                var fileName = Path.GetFileName(file.FileName);
+                var extention = Path.GetExtension(file.FileName);
+                var filenamewithoutextension = Path.GetFileNameWithoutExtension(file.FileName);
+
+                file.SaveAs(Server.MapPath("~/UploadedImage/Client" + file.FileName));
+
+
+            }
+
+            return Json(file.FileName, JsonRequestBehavior.AllowGet);
+
+        }
 
     }
 }

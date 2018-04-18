@@ -66,4 +66,25 @@ namespace RenocanWeb.Models
 
     }
 
+    public class Company_Activity : Message
+    {
+        public int Review_ID { get; set; }
+        public string ReviewedDate { get; set; }
+        public string Service_Review_Status { get; set; }
+        public string FullName { get; set; }
+        public string Review_Title { get; set; }
+        public string Review_Details { get; set; }
+    }
+
+    public class Company_ActivityVM : Message
+    {
+        public Company_ActivityVM()
+        {
+            ComActivityList = new List<Company_Activity>();
+        }
+        public List<Company_Activity> ComActivityList { get; set; }
+    }
+
+
+
 }

@@ -1,29 +1,19 @@
-﻿@Html.Raw(TempData["msg"])
-
-@model RenocanWeb.Models.Company_Search
-@*@{
-        ViewBag.Title = "Company search";
-    }*@
-
-
-<body>
+﻿<body>
     <div class="overlay"></div>
 
     <div id="companysearch">
         <div class="content">
-
-
             <span>Search for Company</span>
             <form method="post">
                 @Html.AntiForgeryToken()
                 <fieldset>
-                    @Html.TextBoxFor(m => m.CompanyName, new { placeholder = "Company Name", @maxlength = "50" })
-                    @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "text-red" })
+                    <input type="text" placeholder="Company Name" id="txtCompanyName" name="CompanyName">
+                    <input type="hidden" id="hdnCompany" name="CompanyId" />
+                    <input type="hidden" id="hdnCompany" name="CategoryId" />
                 </fieldset>
                 <fieldset>
-
-                    @Html.TextBoxFor(m => m.Location, new { placeholder = "Toronto", @maxlength = "50" })
-                    @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-red" })
+                    <input type="text" placeholder="Location" id="txtLocation" name="LocationName">
+                    <input type="hidden" id="hdnLocation" name="LocationId" />
                 </fieldset>
                 <fieldset>
                     <button type="submit"><i class="fa fa-search"></i></button>
@@ -48,3 +38,65 @@
     <hr>
 </body>
 
+<script>
+
+    $(function () {
+        $("#txtCompanyName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/Common/GetCompanies',
+                    data: { search: request.term },
+                    dataType: "json",
+                    type: "Get",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return item.CompanyName;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#hfCustomer").val(i.item.val);
+            },
+            minLength: 1
+        });
+
+        //for Locations
+        $("#txtLocation").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/Common/GetLocations',
+                    data: { search: request.term },
+                    dataType: "json",
+                    type: "Get",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return item.LocationName;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#hfCustomer").val(i.item.val);
+            },
+            minLength: 1
+        });
+
+
+    });
+
+</script>

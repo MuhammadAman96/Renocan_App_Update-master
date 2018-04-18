@@ -37,7 +37,7 @@ namespace RenocanWeb.Models
 
         [AllowHtml]
         [Display(Name = "Email address")]
-        [Required(ErrorMessage = "The email address is required")]
+        [Required(ErrorMessage = " Email is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
@@ -54,14 +54,32 @@ namespace RenocanWeb.Models
         public string Confirm_Password { get; set; }
 
         [AllowHtml]
-        [Required(ErrorMessage = "Please Enter Cell Phone Number")]
-        [RegularExpression(@"^(\d{11})$", ErrorMessage = "Please Enter Valid Cell Phone Number")]
+        [Required(ErrorMessage = "Enter Phone Number")]
+        [RegularExpression(@"^(\d{11})$", ErrorMessage = "Enter Valid Cell Phone Number")]
         public string Phone { get; set; }
 
         public bool IsNewsletter { get; set; }
 
-       
+
+    }
+
+    public class Client_Activity : Message
+    {
+        public int Review_ID { get; set; }
+        public string ReviewedDate { get; set; }
+        public string Service_Review_Status { get; set; }
+        public string CompanyName { get; set; }
+        public string Review_Title { get; set; }
+        public string Review_Details { get; set; }
+    }
+
+    public class Client_ActivityVM : Message
+    {
+        public Client_ActivityVM()
+        {
+            ActivityList = new List<Client_Activity>();
+        }
+        public List<Client_Activity> ActivityList { get; set; }
     }
 }
-
 

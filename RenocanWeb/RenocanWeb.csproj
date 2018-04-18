@@ -174,6 +174,7 @@
     <Compile Include="Common\BaseController.cs" />
     <Compile Include="Controllers\Business_HomeController.cs" />
     <Compile Include="Controllers\ClientAccountController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,11 +183,11 @@
     <Compile Include="Models\Admin_Signup.cs" />
     <Compile Include="Models\Bookmark.cs" />
     <Compile Include="Models\Business_Home.cs" />
-    <Compile Include="Models\City_ListVM.cs" />
     <Compile Include="Models\Client_Signup.cs" />
     <Compile Include="Models\CompaniesSearchVM.cs" />
     <Compile Include="Models\Company_Search.cs" />
     <Compile Include="Models\Company_Service_Location.cs" />
+    <Compile Include="Models\EmailManager.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image_Gallary.cs" />
     <Compile Include="Models\Image_Type.cs" />
@@ -194,10 +195,12 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Profile_Info.cs" />
     <Compile Include="Models\RegistrationCompany.cs" />
     <Compile Include="Models\RegistrationCompanyListing.cs" />
     <Compile Include="Models\Request_Review_History.cs" />
     <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\ReviewList.cs" />
     <Compile Include="Models\Scoreboard.cs" />
     <Compile Include="Models\Service_Category.cs" />
     <Compile Include="Models\Service_Request.cs" />
@@ -209,6 +212,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\jquery-ui.min.css" />
+    <Content Include="Assets\css\jquery-ui.structure.min.css" />
+    <Content Include="Assets\css\jquery-ui.theme.min.css" />
     <Content Include="Assets\css\lightbox.min.css" />
     <Content Include="Assets\css\style.css" />
     <Content Include="Assets\images\about-us-box-bg.jpg" />
@@ -253,7 +259,21 @@
     <Content Include="Assets\images\toolkit-logo-02.jpg" />
     <Content Include="Assets\images\toolkit-logo-03.jpg" />
     <Content Include="Assets\images\twitter-icon.png" />
+    <Content Include="Assets\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Assets\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Assets\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Assets\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Assets\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Assets\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Assets\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Assets\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Assets\images\ui-icons_222222_256x240.png" />
+    <Content Include="Assets\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Assets\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Assets\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Assets\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Assets\images\user-profile-img.jpg" />
+    <Content Include="Assets\js\jquery-ui.min.js" />
     <Content Include="Assets\js\lightbox.min.js" />
     <Content Include="Assets\js\rating.js" />
     <Content Include="Content\bootstrap.css" />
@@ -331,7 +351,7 @@
     <Content Include="Views\ClientAccount\Client_review.cshtml" />
     <Content Include="Views\ClientAccount\Client_forgot_password.cshtml" />
     <Content Include="Views\Business_Home\Business_forgot_password.cshtml" />
-    <Content Include="Views\ClientAccount\Client_job_request.cshtml" />
+    <Content Include="Views\Business_Home\Client_job_request.cshtml" />
     <Content Include="Views\ClientAccount\Write_a_review.cshtml" />
     <Content Include="Views\Business_Home\Browse_category.cshtml" />
     <Content Include="Views\Business_Home\Business_login.cshtml" />
@@ -339,7 +359,7 @@
     <Content Include="Views\Business_Home\Business_city.cshtml" />
     <Content Include="Views\ClientAccount\Client_city.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\ClientAccount\Client_job_request_detail.cshtml" />
+    <Content Include="Views\Business_Home\Client_job_request_detail.cshtml" />
     <Content Include="Views\Business_Home\Company_profile.cshtml" />
     <Content Include="Views\Business_Home\Company_search.cshtml" />
     <Content Include="Views\Business_Home\Business_new_password_.cshtml" />
@@ -347,13 +367,21 @@
     <Content Include="Views\ClientAccount\Client_Information.cshtml" />
     <Content Include="Views\Home\Company_search_list.cshtml" />
     <Content Include="Views\Shared\_Company_List.cshtml" />
-    <Content Include="Views\Shared\_City_List.cshtml" />
+    <Content Include="Views\Shared\_Review_List.cshtml" />
+    <Content Include="Views\Home\Get_a_Quote.cshtml" />
+    <Content Include="Views\Shared\_Review_Company_Profile_list.cshtml" />
+    <Content Include="Views\Shared\_Categories.cshtml" />
+    <Content Include="Views\Shared\_Info_Company_Profile.cshtml" />
+    <Content Include="Views\Shared\_Activity_list.cshtml" />
+    <Content Include="Views\Shared\_CompanyActivityList.cshtml" />
+    <Content Include="Views\Shared\_Company_profile_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedImage\Client\" />
     <Folder Include="App_Data\UploadedImage\Company\Gallery\" />
     <Folder Include="App_Data\UploadedImage\Company\Profile\" />
     <Folder Include="Views\AdminBase\" />
+    <Folder Include="Views\Common\" />
     <Folder Include="Views\User_Account\" />
   </ItemGroup>
   <ItemGroup>
