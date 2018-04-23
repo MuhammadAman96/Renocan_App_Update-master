@@ -60,6 +60,8 @@ namespace RenocanWeb.Models
 
         public bool IsNewsletter { get; set; }
 
+        public string Image_Name { get; set; }
+
 
     }
 

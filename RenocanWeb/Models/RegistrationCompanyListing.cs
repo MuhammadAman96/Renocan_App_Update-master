@@ -78,7 +78,13 @@ namespace RenocanWeb.Models
 
         //[Required(ErrorMessage = "Please Enter Warranty")]
         public string Warranty { get; set; }
+
+        public string Image_Name { get; set; }
+        public string PostalCode { get; set; }
+        public string CompanyName { get; set; }
+        public int Company_ID { get; set; }
+
     }
-  
+
 }
 

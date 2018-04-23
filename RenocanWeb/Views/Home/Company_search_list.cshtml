@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                     <div class="heading">
-                        <span class="title">Bathroom Renovation in Toronto</span>
+                        <span class="title"><h2>Searching Result </h2> </span>
                         <p>Listed below are written reviews and ratings from homeowners sharing their renovation experiences with bathroom contractors. Renovating your bathroom not only produces a solid return on your investment, it also improves space efficiency and water use. Choose a bathroom company who can design and remodel your bathroom to include quality showers and baths, install or replace sinks and faucets, and add luxury features such as heated floors. When remodeling or fixing up a bathroom, check out our members comments on bathroom contractors to help you decide who to hire and who to avoid.</p>
                     </div>
 
@@ -19,16 +19,15 @@
                                 <input type="text" placeholder="City Name" id="txtCityName">
                                 @*@Html.TextBoxFor(m => m, new { placeholder = "City", @maxlength = "50" })
                                 @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-red" })*@
-                                <button type="submit" onclick="getCompanies()"><i class="fa fa-search"></i></button>
+                                <button type="submit" onclick="getCompanies(), getvalues();" id="get"><i class="fa fa-search"></i></button>
                             @*</form>*@
                         </div>
 
                         <div class="sort">
                             <span>Sort By:</span>
-                            <label><input type="radio" name="options" value="radio" id="options_0"> Customer rating</label>
-                            <label><input type="radio" name="options" value="radio" id="options_1"> Company Score</label>
-                            <label><input type="radio" name="options" value="radio" id="options_2"> Recently</label>
-                            <label><input type="radio" name="options" value="radio" id="options_3"> Lowest Ratings</label>
+                            <label><input type="radio" name="options" value="radio" id="highrating"> Customer rating</label>
+                            <label><input type="radio" name="options" value="radio" id="recently"> Recently</label>
+                            <label><input type="radio" name="options" value="radio" id="lowrating"> Lowest Ratings</label>
                         </div>
 
                     </div>
@@ -168,12 +167,15 @@
                         <div class="newcompany">
                             <span>Can't find a company?</span>
                             <p>Add a new company to share your review.</p>
-                            <a href="">Review a New Company</a>
+                           @Html.ActionLink("Review a New Company", "Write_a_review", "ClientAccount")
+
                         </div>
                         <div class="addcompany">
                             <span>Company Not Listed?</span>
                             <p>List your home care or renovation business on RenoCan.</p>
-                            <a href="">Add your Company</a>
+                          
+                            @Html.ActionLink("Add your Company", "BusinessSignUp", "Home")
+                     
                         </div>
                         <div class="newsletter">
                             <span class="title">Want to be the first to know everything? <br><u>Join our newsletter.</u></span>
@@ -186,7 +188,8 @@
                         <div class="aboutus">
                             <span class="title">We are RenoCan.com</span>
                             <p>We find the best of everything. How? We start with the world. We narrow down our list with expert insight and cut anything that doesn't meet our standards. We hand-test the finalists. Then, we name our top picks.</p>
-                            <a href="">Learn More About Us</a>
+                            @*<a href="">Learn More About Us</a>*@
+                            @Html.ActionLink("Learn More About Us", "Index", "Home")
                         </div>
                         <div class="topcat">
                             <span class="heading">Top Categories</span>
@@ -239,15 +242,20 @@
         UnitLocationId = $(Data).attr('value');
     }
 
+  
     function getCompanies() {
         var CategoryName = $("#txtCategoryName").val();
         var CityName = $("#txtCityName").val();
+
+        var sortby = $("input[name='options']:checked").prop('id');
+        if (sortby == 'undefined')
+        { sortby = null }
 
         $.ajax({
             async: true,
             type: 'GET',
             cache: false,
-            data: { CategoryName: CategoryName, CityName: CityName, Company_ID :-1},
+            data: { CategoryName: CategoryName, CityName: CityName, Company_ID: -1 ,sortby: sortby },
             dataType: 'html',   //response format
             contentType: 'application/json; charset=utf-8', //request format
             crossDomain: true,
@@ -282,8 +290,14 @@
             },
         });
     }
+    $("input[name='options']").change(function () {
+        getCompanies();
+    });
 
     $(document).ready(function () {
+        getCompanies();
+     
+       
 
         //$("body").delegate("#btnDelete", "click", function () {
         //    $.ajax({

@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -183,10 +186,13 @@
     <Compile Include="Models\Admin_Signup.cs" />
     <Compile Include="Models\Bookmark.cs" />
     <Compile Include="Models\Business_Home.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\Client_Signup.cs" />
     <Compile Include="Models\CompaniesSearchVM.cs" />
     <Compile Include="Models\Company_Search.cs" />
     <Compile Include="Models\Company_Service_Location.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\EmailManager.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image_Gallary.cs" />
@@ -195,6 +201,8 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\PasswordRecovery.cs" />
+    <Compile Include="Models\PasswordRecoveryConfirm.cs" />
     <Compile Include="Models\Profile_Info.cs" />
     <Compile Include="Models\RegistrationCompany.cs" />
     <Compile Include="Models\RegistrationCompanyListing.cs" />
@@ -349,8 +357,7 @@
     <Content Include="Views\ClientAccount\Client_activity.cshtml" />
     <Content Include="Views\ClientAccount\Client_Sign_up.cshtml" />
     <Content Include="Views\ClientAccount\Client_review.cshtml" />
-    <Content Include="Views\ClientAccount\Client_forgot_password.cshtml" />
-    <Content Include="Views\Business_Home\Business_forgot_password.cshtml" />
+    <Content Include="Views\ClientAccount\PasswordRecovery.cshtml" />
     <Content Include="Views\Business_Home\Client_job_request.cshtml" />
     <Content Include="Views\ClientAccount\Write_a_review.cshtml" />
     <Content Include="Views\Business_Home\Browse_category.cshtml" />
@@ -362,8 +369,6 @@
     <Content Include="Views\Business_Home\Client_job_request_detail.cshtml" />
     <Content Include="Views\Business_Home\Company_profile.cshtml" />
     <Content Include="Views\Business_Home\Company_search.cshtml" />
-    <Content Include="Views\Business_Home\Business_new_password_.cshtml" />
-    <Content Include="Views\ClientAccount\Client_new_password_.cshtml" />
     <Content Include="Views\ClientAccount\Client_Information.cshtml" />
     <Content Include="Views\Home\Company_search_list.cshtml" />
     <Content Include="Views\Shared\_Company_List.cshtml" />
@@ -375,6 +380,11 @@
     <Content Include="Views\Shared\_Activity_list.cshtml" />
     <Content Include="Views\Shared\_CompanyActivityList.cshtml" />
     <Content Include="Views\Shared\_Company_profile_list.cshtml" />
+    <Content Include="Views\ClientAccount\PasswordRecoveryConfirm.cshtml" />
+    <Content Include="Views\Business_Home\CompanyPasswordRecovery.cshtml" />
+    <Content Include="Views\Business_Home\CompanyPasswordRecoveryConfirm.cshtml" />
+    <Content Include="Views\ClientAccount\ChangePassword.cshtml" />
+    <Content Include="Views\Business_Home\CompanyChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedImage\Client\" />

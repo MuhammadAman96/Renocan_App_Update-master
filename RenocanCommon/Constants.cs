@@ -20,5 +20,20 @@ namespace RenocanCommon
         public  static string ErrorMesssage = "Your request can't be completed at this moment please contact your administrator";
 
        
+        public const string CustomerID = "c_id";
+        public const string LandingURL = "landingURL";
+        public const string ReferrerURL = "referrerURL";
+      
+        public static bool IsAjaxRequestAccept
+        {
+            get
+            {
+                //Uri url = HttpContext.Current.Request.UrlReferrer;
+                //if (url != null)
+                //    return AppConfigurations.Host.Contains(url.Host);
+
+                return true;
+            }
+        }
     }
 }

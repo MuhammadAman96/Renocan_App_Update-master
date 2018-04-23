@@ -80,7 +80,7 @@ namespace RenocanWeb.Controllers
 
 
         [HttpGet]
-        public ActionResult getCompanyList(string cat, string loc)
+        public ActionResult getCompanyList(string cat, string loc, string sortby)
         {
 
 
@@ -88,14 +88,15 @@ namespace RenocanWeb.Controllers
         }
 
 
-        public DataTable GetCompanyList(string cat, string loc)
+        public DataTable GetCompanyList(string cat, string loc,string sortby)
         {
             try
             {
                 SqlParameter[] parameters =
                {
                 new SqlParameter("@category_Name",SqlDbType.VarChar){Value= cat },
-                new SqlParameter("@location_Name",SqlDbType.VarChar){Value= loc }
+                new SqlParameter("@location_Name",SqlDbType.VarChar){Value= loc },
+                new SqlParameter("@sortby",SqlDbType.VarChar){Value= sortby }
 
                };
 
@@ -110,10 +111,10 @@ namespace RenocanWeb.Controllers
 
 
 
-        public ActionResult _Company_list(string CategoryName, string CityName)
+        public ActionResult _Company_list(string CategoryName, string CityName,string sortby)
         {
             CompaniesSearchVM objCompanyResponseModel = new CompaniesSearchVM();
-            DataTable datatable = GetCompanyList(CategoryName, CityName);
+            DataTable datatable = GetCompanyList(CategoryName, CityName,sortby);
             objCompanyResponseModel.CompanyList = EnumerableExtension.ToList<CompaniesSearch>(datatable);
 
             return PartialView(objCompanyResponseModel);

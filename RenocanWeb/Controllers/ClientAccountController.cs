@@ -1,7 +1,9 @@
-﻿using RenocanCommon;
+﻿using CaptchaMvc.HtmlHelpers;
+using RenocanCommon;
 using RenocanWeb.Common;
 using RenocanWeb.Models;
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,7 +23,7 @@ namespace RenocanWeb.Controllers
         }
 
 
-
+        //
         public ActionResult Client_Sign_up()
         {
             var Client_Signup = new Client_Signup();
@@ -83,33 +85,67 @@ namespace RenocanWeb.Controllers
             }
         }
 
-
+        //
         public ActionResult LogOut()
         {
             //  FormsAuthentication.SignOut();
             Session.Abandon(); // it will clear the session at the end of request
             return RedirectToAction("Index", "Home");
         }
-
+        //
 
 
         public ActionResult Client_bookmarks()
         {
-            return View();
+            if (Session["ClientId"] != null)
+            {
+                var client = new Client_Signup();
+                client.Client_ID = Convert.ToInt32(Session["ClientId"]);
 
+                DataTable dt = GetClientById(client.Client_ID);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    client.First_Name = dt.Rows[0]["First_Name"].ToString();
+                    client.City = dt.Rows[0]["City"].ToString();
+                    client.Image_Name = !string.IsNullOrEmpty(dt.Rows[0]["Image_Name"].ToString()) ? dt.Rows[0]["Image_Name"].ToString() : "../" + ConfigurationManager.AppSettings["ClientProfileImageVD"].ToString() + "Default.jpg";
+
+                }
+
+                return View(client);
+            }
+            return RedirectToAction("Client_login", "ClientAccount");
         }
 
 
-       
+
+        //
+
+
+
 
         public ActionResult Client_review()
         {
-            return View();
+            if (Session["ClientId"] != null)
+            {
+                var client = new Client_Signup();
+                client.Client_ID = Convert.ToInt32(Session["ClientId"]);
 
+                DataTable dt = GetClientById(client.Client_ID);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    client.First_Name = dt.Rows[0]["First_Name"].ToString();
+                    client.City = dt.Rows[0]["City"].ToString();
+                    client.Image_Name = !string.IsNullOrEmpty(dt.Rows[0]["Image_Name"].ToString()) ? dt.Rows[0]["Image_Name"].ToString() : "../" + ConfigurationManager.AppSettings["ClientProfileImageVD"].ToString() + "Default.jpg";
+
+                }
+
+                return View(client);
+            }
+            return RedirectToAction("Client_login", "ClientAccount");
         }
 
 
-
+        //
 
 
         public ActionResult Write_a_review()
@@ -130,7 +166,7 @@ namespace RenocanWeb.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Write_a_review(Review review,string hdnPostalCode)
+        public ActionResult Write_a_review(Review review, string hdnPostalCode)
         {
             if (ModelState.IsValid)
             {
@@ -170,7 +206,7 @@ namespace RenocanWeb.Controllers
         }
 
 
-
+        //
 
 
 
@@ -230,32 +266,33 @@ namespace RenocanWeb.Controllers
         }
 
 
-
+        //
 
 
 
         public ActionResult Client_city()
         {
-          
+
             return View();
 
         }
 
 
-
+        //
 
         public ActionResult Client_new_password_()
         {
             return View();
         }
 
-
+        //
         [HttpGet]
         public ActionResult Client_Information()
         {
 
             var client = new Client_Signup();
             client.Client_ID = Convert.ToInt32(Session["ClientId"]);
+
             DataTable dt = GetClientById(client.Client_ID);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -265,6 +302,8 @@ namespace RenocanWeb.Controllers
                 client.State = dt.Rows[0]["State"].ToString();
                 client.Email = dt.Rows[0]["Email"].ToString();
                 client.Phone = dt.Rows[0]["Phone"].ToString();
+                client.Image_Name = !string.IsNullOrEmpty(dt.Rows[0]["Image_Name"].ToString()) ? dt.Rows[0]["Image_Name"].ToString() : "../" + ConfigurationManager.AppSettings["ClientProfileImageVD"].ToString() + "Default.jpg";
+
                 client.IsNewsletter = Convert.ToBoolean(dt.Rows[0]["IsNewsletter"]);
             }
 
@@ -352,19 +391,31 @@ namespace RenocanWeb.Controllers
 
 
 
-
+        //
         public ActionResult Client_forgot_password()
         {
             return View();
 
         }
 
-
+        //
         public ActionResult Client_activity()
         {
             if (Session["ClientId"] != null)
             {
-                return View();
+                var client = new Client_Signup();
+                client.Client_ID = Convert.ToInt32(Session["ClientId"]);
+
+                DataTable dt = GetClientById(client.Client_ID);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    client.First_Name = dt.Rows[0]["First_Name"].ToString();
+                    client.City = dt.Rows[0]["City"].ToString();
+                    client.Image_Name = !string.IsNullOrEmpty(dt.Rows[0]["Image_Name"].ToString()) ? dt.Rows[0]["Image_Name"].ToString() : "../" + ConfigurationManager.AppSettings["ClientProfileImageVD"].ToString() + "Default.jpg";
+
+                }
+
+                return View(client);
             }
             return RedirectToAction("Client_login", "ClientAccount");
         }
@@ -393,9 +444,6 @@ namespace RenocanWeb.Controllers
                 return null;
             }
         }
-
-
-
         public ActionResult _Activity_list()
         {
             Client_ActivityVM objCompanyResponseModel = new Client_ActivityVM();
@@ -404,26 +452,172 @@ namespace RenocanWeb.Controllers
             return PartialView(objCompanyResponseModel);
         }
 
+        //
+
+        [HttpPost]
+
         public JsonResult ImageUpload(Image_Gallary model)
         {
 
             var file = model.ImageFile;
-
+            string filepath = string.Empty;
             if (file != null)
             {
 
                 var fileName = Path.GetFileName(file.FileName);
                 var extention = Path.GetExtension(file.FileName);
                 var filenamewithoutextension = Path.GetFileNameWithoutExtension(file.FileName);
+                filepath = ConfigurationManager.AppSettings["ClientProfileImageVD"] + Guid.NewGuid().ToString() + extention;
+                file.SaveAs(Server.MapPath(filepath));
 
-                file.SaveAs(Server.MapPath("~/UploadedImage/Client" + file.FileName));
+                SqlParameter[] parameters =
+              {
 
+                  new SqlParameter("@ClientId", SqlDbType.Int) { Value = Convert.ToInt32(Session["ClientId"])  },
+                  new SqlParameter("@Image_Name", SqlDbType.VarChar) { Value = filepath  },
+                  new SqlParameter("@Image_Type_ID", SqlDbType.VarChar) { Value =1  },
+                  new SqlParameter("@User_Typeid", SqlDbType.VarChar) { Value = 3 },
+                 new SqlParameter("@UserIP",SqlDbType.NVarChar){Value= Constants.GetUserIP() }
+              };
+                DataAccess.GetDataTable(AppConfigurations.ConnectionString, "Insert_Update_Image", parameters);
 
             }
 
-            return Json(file.FileName, JsonRequestBehavior.AllowGet);
+            return Json(filepath, JsonRequestBehavior.AllowGet);
 
         }
+
+        //        
+
+        public ActionResult PasswordRecovery()
+        {
+            PasswordRecovery passwordRecovery = new PasswordRecovery();
+            return View(passwordRecovery);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult PasswordRecovery(PasswordRecovery passwordRecovery)
+        {
+            Email service = new Email();
+            if (ModelState.IsValid)
+            {
+                if (this.IsCaptchaValid("Validate your captcha"))
+                {
+                    Customer customerService = new Customer();
+                    string result = customerService.PasswordRecovery(passwordRecovery.Email);
+
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        service.ClientSendEmail(result, passwordRecovery.Email);
+                        passwordRecovery.Message = "Password Recovery link has been send to your Email ";
+                    }
+                    else
+                    {
+                        passwordRecovery.Message = "Incorrect provided Email";
+                    }
+                }
+                else
+                    passwordRecovery.Message = "Wrong Captcha try again";
+            }
+
+            return View(passwordRecovery);
+        }
+
+        public ActionResult PasswordRecoveryConfirm(string token, string email)
+        {
+            PasswordRecoveryConfirm passwordRecoveryConfirm = new PasswordRecoveryConfirm();
+            Customer customerService = new Customer();
+
+            passwordRecoveryConfirm.DisablePasswordChanging = false;
+            DataTable objDt = customerService.PasswordRecoveryCheck(token, email);
+            if (objDt != null && objDt.Rows.Count > 0)
+            {
+                if (Convert.ToDateTime(objDt.Rows[0]["PasswordRecoverExpiry"]) < DateTime.Now)
+                {
+                    passwordRecoveryConfirm.Message = "Password Recovery Link has been Expired";
+                    passwordRecoveryConfirm.DisablePasswordChanging = true;
+                }
+            }
+            else
+            {
+                passwordRecoveryConfirm.Message = "Incorrect Recovery Url";
+                passwordRecoveryConfirm.DisablePasswordChanging = true;
+            }
+
+            return View(passwordRecoveryConfirm);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult PasswordRecoveryConfirm(string token, string email, PasswordRecoveryConfirm passwordRecoveryConfirm)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer customerService = new Customer();
+                passwordRecoveryConfirm.DisablePasswordChanging = false;
+                if (customerService.PasswordReset(email, passwordRecoveryConfirm.Password))
+                {
+                    passwordRecoveryConfirm.Message = "Successfully ..! Password has been changed";
+                    passwordRecoveryConfirm.DisablePasswordChanging = true;
+                }
+            }
+            return View(passwordRecoveryConfirm);
+        }
+        //
+
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            if (Session["ClientId"] == null)
+            {
+
+                return RedirectToAction("Client_login", "ClientAccount", new { returnUrl = Request.RawUrl });
+            }
+            ChangePasswordModel cpm = new ChangePasswordModel();
+            return View(cpm);
+        }
+
+        //
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordModel requestModel)
+        {
+            if (Session["ClientId"] == null)
+            {
+                return RedirectToAction("Client_login", "ClientAccount", new { returnUrl = Request.RawUrl });
+            }
+            if (ModelState.IsValid)
+            {
+                Customer customerService = new Customer();
+                DataTable dtb = customerService.ChangePassword(Convert.ToInt32(Session["ClientId"]), requestModel.CurrentPassword,
+                                   requestModel.NewPassword);
+
+                if (dtb != null && dtb.Rows.Count > 0)
+                {
+                    if (Convert.ToBoolean(dtb.Rows[0]["IsValidPassword"]))
+                    {
+                        requestModel.SuccessMessage = "Successfully ..! Password has been changed";
+                    }
+
+                    else
+                    {
+                        ModelState.AddModelError("", "ChangePassword");
+                    }
+                }
+            }
+
+            return View(requestModel);
+        }
+
+        //
+
+
 
     }
 }

@@ -8,21 +8,36 @@
         <div class="content">
             <div class="left">
                 <div class="profile">
-                    <img src="~/Assets/images/company-logo-06.jpg" alt="">
+                    <img id="uploadedImage" src="../@Model.Image_Name" />
+
                     <div class="details">
                         <span class="name">
-                            Unilever Pvt Ltd.
+                            @Model.CompanyName
                         </span>
                         <span class="city">
-                            Toronto
+                            @Model.PostalCode
                         </span>
-                        <span class="upload">
-                            <button type="file" name="image"><i class="fa fa-camera"></i> Upload Logo</button>
-                            <!--<button type="file" name="image" class="remove"><i class="fa fa-times-circle"></i> Remove Logo</button>-->
+                        <div class="upload">
+
+                            <i class="fa fa-camera" id="uploadIcon" title="Upload Image"></i>
+                            <input type="file" id="imageBrowes" style="display: none;" />
+
+                            <div id="imgPreview" class="thumbnail" style="display:none">
+                                <img class="img-responsive" id="targetImg" src="../@Model.Image_Name" />
+
+                                <div class="caption">
+                                    <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <span id="description"></span>
+                                </div>
+                                <a href="#" class="fa fa-camera" onclick="Uploadimage()">Upload</a>
+                            </div>
+
+                            <!--<button type="file" name="image" class="remove"><i class="fa fa-times-circle"></i> Remove Picture</button>-->
                             <span>.jpg .png allowed only max: 2mb</span>
-                        </span>
+                        </div>
                     </div>
                 </div>
+
                 <div class="menu">
                     <ul>
                         <li><a href=""><i class="fa fa-clock-o"></i> @Html.ActionLink("Activity", "Activity", "Business_Home")</a></li>
@@ -39,6 +54,8 @@
 
 
                         <li><i class="fa fa-building"></i>@Html.ActionLink("Company Information", "Company_profile", "Business_Home")</li>
+
+                        <li><i class="fa fa-building"></i>@Html.ActionLink("Change Password", "CompanyChangePassword", "Business_Home")</li>
 
                         <li><a href='@Url.Action("LogOut","Business_Home")'><i class="fa fa-sign-out"></i> Log Out</a></li>
                     </ul>
@@ -212,3 +229,91 @@
         </div>
     </div>
 </body>
+<script>
+   
+
+
+    $(document).ready(function () {
+
+        $("#imageBrowes").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        })
+
+    })
+
+
+    var ReadImage = function (file) {
+
+        var reader = new FileReader;
+        var image = new Image;
+
+        reader.readAsDataURL(file);
+        reader.onload = function (_file) {
+
+            image.src = _file.target.result;
+            image.onload = function () {
+
+                var height = this.height;
+                var width = this.width;
+                var type = file.type;
+                var size = ~~(file.size / 1024) + "KB";
+
+                $("#targetImg").attr('src', _file.target.result);
+                $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                $("#imgPreview").show();
+
+            }
+
+        }
+
+    }
+
+    var ClearPreview = function () {
+        $("#imageBrowes").val('');
+        $("#description").text('');
+        $("#imgPreview").hide();
+
+    }
+
+    var Uploadimage = function () {
+
+        var file = $("#imageBrowes").get(0).files;
+
+        var data = new FormData;
+        data.append("ImageFile", file[0]);
+
+
+        $.ajax({
+
+            type: "Post",
+            url: "../Business_Home/ImageUpload",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                ClearPreview();
+                var url = '../' + response;
+
+                //$("#uploadedImage").append('<img src=' + url + ' class="img-responsive thumbnail"/>');
+                $("#uploadedImage").attr('src', url);
+
+
+            }
+
+        })
+
+
+        //
+    }
+    $("#uploadIcon").click(function () {
+        $("input[type='file']").trigger('click');
+    });
+
+
+</script>

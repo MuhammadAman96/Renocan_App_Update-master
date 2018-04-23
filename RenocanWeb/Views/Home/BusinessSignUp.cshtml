@@ -66,10 +66,10 @@
                     </fieldset>
 
                     <fieldset class="small">
-                        
-                            @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Phone", @maxlength = "50" })
-                            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-red" })
-                        
+
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Phone", @maxlength = "50" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-red" })
+
                     </fieldset>
 
                     <fieldset>
@@ -78,18 +78,22 @@
 
                     </fieldset>
                     <fieldset class="small">
-                        @Html.TextBoxFor(m =>m.Create_Password, new { placeholder = "Create Password", @maxlength = "50" })
+                        @Html.TextBoxFor(m => m.Create_Password, new { placeholder = "Create Password", @maxlength = "50" })
                         @Html.ValidationMessageFor(m => m.Create_Password, "", new { @class = "text-red" })
 
                     </fieldset>
                     <fieldset class="small">
-                        @Html.TextBoxFor(m =>m.Confirm_Password, new { placeholder = "Confirm Password", @maxlength = "50" })
+                        @Html.TextBoxFor(m => m.Confirm_Password, new { placeholder = "Confirm Password", @maxlength = "50" })
                         @Html.ValidationMessageFor(m => m.Confirm_Password, "", new { @class = "text-red" })
                     </fieldset>
                     <p>By Signing Up you accept <a href="">Terms &amp; Conditions</a> &amp; <a href="">Privacy Policy</a>.</p>
-                    <input type="submit" value="Create Business Account">
-                    <button><a href="">Already Registered? Login</a></button>
+                    <input type="submit" value="Create Business Account"/>
+                    @*<button>   @Html.ActionLink("  Already Registered? Login", "Business_login", "Business_Home")</button>*@
+                      <a href='@Url.Action("Business_login", "Business_Home")' style="display:block;font-size:14px;color:#0A0A08;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:2px;padding:10px;width:100%;margin-top:5px;text-align:center;
+	">  Already Registered? Login</a>
+                    @*<button><a href="">Already Registered? Login</a></button>*@
                 </form>
+              
             </div>
         </div>
     </div>
